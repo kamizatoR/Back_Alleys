@@ -24,3 +24,6 @@
 - IDE：Cloud9
 
 ## 使用素材
+
+##実装機能URL
+https://docs.google.com/spreadsheets/d/1eZPvaSIHPtmfI0JXseQBzt-v-HPmitPG50GMibdBY9s/edit#gid=1898975908
