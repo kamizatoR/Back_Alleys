@@ -3,6 +3,7 @@ class CreateLikes < ActiveRecord::Migration[6.1]
     create_table :likes do |t|
 
       t.timestamps
+      t.references :profilable, polymorphic: true, null: false
     end
   end
 end
