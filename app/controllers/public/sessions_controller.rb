@@ -2,6 +2,22 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :end_user_state, only: [:create]
+
+  protected
+
+  def end_user_state
+
+    @end_user = EndUser.find_by(email: params[:end_user][:email])
+
+    return if !@end_user
+
+    if @end_user
+      if @end_user.valid_password?(params[:end_user][:password]) &&  @end_user.is_deleted
+        redirect_to new_end_user_session_path
+      end
+    end
+  end
 
   # GET /resource/sign_in
   # def new

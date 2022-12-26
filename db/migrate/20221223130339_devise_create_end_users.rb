@@ -13,7 +13,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[6.1]
 
       ## Rememberable
       t.datetime :remember_created_at
-      t.string :display_name, null: false 
+      t.string :display_name, null: false
       t.string :first_name, null: false
       t.string :last_name, null: false
       t.string :first_kana, null: false
