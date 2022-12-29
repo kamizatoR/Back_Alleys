@@ -4,6 +4,13 @@ class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :end_user_state, only: [:create]
 
+  def guest_sign_in
+    end_user = EndUser.guest
+    sign_in end_user
+    redirect_to root_path
+  end
+
+
   protected
 
   def end_user_state
