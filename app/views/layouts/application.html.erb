@@ -21,7 +21,9 @@
 
         <div class="col-4 border-left postion-relative">
           <nav class="nav nav-bar　d-flex　align-items-end flex-column subbar">
+
             <% if end_user_signed_in? %>
+
               <ul class="navbar-nav mx-5 mt-4">
                 <li class="nav-item my-2">
                   <%= link_to "投稿一覧", root_path, class: 'btn btn-outline-dark nav-link'%>
@@ -39,11 +41,9 @@
                     <%= link_to "ユーザー", mypage_path, class: 'btn btn-outline-dark nav-link' %>
                   </div>
                   <div class="col-6">
-                    <%= link_to "投稿", mypage_path, class: 'btn btn-outline-dark nav-link' %>
+                    <%= link_to "投稿", new_post_path, class: 'btn btn-outline-dark nav-link' %>
                   </div>
                 </div>
-
-
 
             <% elsif admin_signed_in? %>
               <ul class="navbar-nav">

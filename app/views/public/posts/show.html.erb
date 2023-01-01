@@ -1,0 +1,27 @@
+<div class="row mt-5">
+    <div class="col-10 text-center">
+
+      <% if @post.image.attached? %>
+
+        <div class="row justify-content-center">
+          <%= image_tag @post.image, size: "350x200" %>
+        </div>
+
+      <% end %>
+        <div class="row justify-content-center mt-4">
+          <%= @post.body %>
+        </div>
+    </div>
+
+    <div class="col-2 pl-0">
+      <ul class="list-unstyled">
+        <li>
+          <%= link_to "編集", edit_post_path %>
+        </li>
+        <li>
+          <%= link_to "削除", post_path(@post.id), method: :delete %>
+        </li>
+      </ul>
+    </div>
+
+</div>
