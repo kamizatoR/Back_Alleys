@@ -37,9 +37,17 @@
               </ul>
 
                 <div  class="row mt-auto bd-highlight ml-4">
-                  <div class="col-6">
-                    <%= link_to "ユーザー", mypage_path, class: 'btn btn-outline-dark nav-link' %>
+                  <div class="col-6 text-center items-align-center">
+                    <div class="row">
+                      <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+                        <% if current_end_user.image.attached? %>
+                          <%= image_tag current_end_user.image, size: "40x40", class: "rounded-circle" %>
+                        <% end %>
+                          <strong><%= current_end_user.display_name %></strong>
+                      <% end %>
+                    </div>
                   </div>
+
                   <div class="col-6">
                     <%= link_to "投稿", new_post_path, class: 'btn btn-outline-dark nav-link' %>
                   </div>

@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center" style="height:300px;">
       <div>
         <%= form_with model: @post, url: post_path(@post.id),method: :patch do |f| %>
-
+        
           <div class="row mx-3 mb-3 px-5 justify-content-around ">
             <%= f.file_field :image, accept: "image/*" %>
           </div>

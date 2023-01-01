@@ -4,7 +4,12 @@
     <%= form_with model: @end_user, url: update_mypage_path do |f| %>
 
       <div class="row mx-4 mb-3 px-5 ">
-        <%= f.label  "表示名", class: "col-form-label col-3 mr-1"  %>
+        <p class="mr-2">プロフィール画像</p>
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+
+      <div class="row mx-4 mb-3 px-5 ">
+        <%= f.label  "表示名", class: "col-form-label col-3"  %>
         <%= f.text_field :display_name, autofocus: true, class: " ml-3 col-4 form-control"  %>
       </div>
 

@@ -1,1 +1,61 @@
-<h1>投稿一覧</h1>
+<div class="row mt-5 justify-content-center">
+  <div class="col-5 pr-3">
+    <h6 class="text-center my-1">週間ランキング</h6>
+    <% @posts.each do |posts| %>
+      <div class="card my-3">
+
+        <div class="card-header bg-light">
+          <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+            <% if posts.end_user.image.attached? %>
+              <%= image_tag posts.end_user.image, size: "40x40", class: "rounded-circle" %>
+            <% end %>
+            <%= current_end_user.display_name %>
+          <% end %>
+        </div>
+
+        <% if posts.image.attached? %>
+          <%= image_tag posts.image, class: "p-2"%>
+        <% end %>
+
+        <div class="card-body">
+          <p class="card-title"><%= posts.body %></p>
+        </div>
+
+        <div class="card-footer ">
+          <%= posts.end_user.display_name %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-5 border-left">
+    <h6 class="text-center my-1">新着投稿</h6>
+    <% @posts.each do |posts| %>
+      <div class="card my-3">
+
+        <div class="card-header bg-light">
+          <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+            <% if posts.end_user.image.attached? %>
+              <%= image_tag posts.end_user.image, size: "40x40", class: "rounded-circle" %>
+            <% end %>
+            <%= current_end_user.display_name %>
+          <% end %>
+        </div>
+
+        <% if posts.image.attached? %>
+          <%= image_tag posts.image, class: "p-2"%>
+        <% end %>
+
+        <div class="card-body">
+          <p class="card-title"><%= posts.body %></p>
+        </div>
+
+        <div class="card-footer ">
+          <%= posts.end_user.display_name %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
