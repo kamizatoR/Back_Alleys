@@ -1,29 +1,3 @@
-<div class="row mt-5">
-  <div class="col-10 d-flex justify-content-center text-center">
-    <div class="card-list-containar py-5">
-      <% @posts.each do |posts| %>
-        <div class="card w-50 mx-auto mt-4 shadow-lg">
-          <% if posts.image.attached? %>
-            <%= image_tag posts.image, class:"card-img-top"; %>
-          <% end %>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-10">
-                  <p class="card-title">
-                    <%= posts.body %>
-                </div>
-              </div>
-            </div>
-          </div>
-      <% end %>
-  </div>
+<h1>タイムライン</h1>
 
-  <div class="col-2 pl-0">
-    <ul class="list-unstyled">
-      <li>
-        <%= link_to "削除", post_path(@post.id), method: :delete %>
-      </li>
-    </ul>
-  </div>
-</div>
 
