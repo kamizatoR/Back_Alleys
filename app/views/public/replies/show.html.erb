@@ -1,0 +1,35 @@
+<div class="row mt-5">
+    <div class="col-10 text-center">
+
+      <div class="row mb-3">
+          <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+              <% if @reply.end_user.image.attached? %>
+                <%= image_tag @reply.end_user.image, size: "40x40", class: "rounded-circle" %>
+              <% end %>
+            <strong><%= @reply.end_user.display_name %></strong>
+          <% end %>
+          <%= link_to post_comment_path(@post.id, @comment.id), class: "text-decoration-none text-info"  do %>
+            <small class="ml-3">返信先<%= @reply.comment.end_user.display_name %></small>
+          <% end %>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <%= @reply.body %>
+      </div>
+
+    </div>
+
+  <% if end_user_signed_in? && @reply.end_user_id == current_end_user.id  %>
+    <div class="col-2 pl-0">
+      <ul class="list-unstyled">
+        <li>
+          <%= link_to "編集", edit_post_comment_reply_path(@post.id, @comment, @reply.id) %>
+        </li>
+        <li>
+          <%= link_to "削除", post_comment_reply_path(@post.id, @comment.id, @reply.id), method: :delete, "data-confirm"=> "本当に退会しますか？" %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+
+</div>

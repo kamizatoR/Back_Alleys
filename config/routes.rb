@@ -20,9 +20,12 @@ Rails.application.routes.draw do
     patch '/end_users/mypage' => "end_users#update", as: "update_mypage"
     get '/end_users/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
     patch '/end_users/withdraw' => "end_users#withdraw", as: 'withdraw'
-    
+
     resources :posts do
-      resources :comments, only: [:show, :create, :update, :edit, :destroy]
+      resources :comments, only: [:show, :create, :update, :edit, :destroy] do
+        resources :replies, only: [:show, :create, :update, :edit, :destroy] 
+      end
+
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

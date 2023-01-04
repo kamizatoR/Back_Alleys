@@ -1,0 +1,72 @@
+<div class="row mt-5">
+    <div class="col-10 text-center">
+
+      <div class="row mb-3">
+          <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+              <% if @comment.end_user.image.attached? %>
+                <%= image_tag @comment.end_user.image, size: "40x40", class: "rounded-circle" %>
+              <% end %>
+            <strong><%= @comment.end_user.display_name %></strong>
+          <% end %>
+          <%= link_to post_path(@post.id), class: "text-decoration-none text-info"  do %>
+            <small class="ml-3">返信先<%= @comment.post.end_user.display_name %></small>
+          <% end %>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <%= @comment.body %>
+      </div>
+
+    </div>
+
+  <% if end_user_signed_in? && @comment.end_user_id == current_end_user.id  %>
+    <div class="col-2 pl-0">
+      <ul class="list-unstyled">
+        <li>
+          <%= link_to "編集", edit_post_comment_path(@post.id, @comment.id) %>
+        </li>
+        <li>
+          <%= link_to "削除", post_comment_path(@post.id, @comment.id), method: :delete, "data-confirm"=> "本当に退会しますか？" %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+
+</div>
+
+<div class="row mt-5 mb-2 border-top border-bottom">
+  <%= @comment.replies.count %>件投稿件数
+</div>
+
+<% @comment.replies.each do |reply| %>
+  <div class="row py-3 border-bottom">
+    <div class="col-6">
+      <% if reply.end_user.image.attached? %>
+        <%= image_tag reply.end_user.image, size: "30x30", class: "rounded-circle" %>
+      <% end %>
+      <span><%= reply.end_user.display_name %></span>
+      <small>返信先<%= reply.comment.end_user.display_name %></small>
+    </div>
+
+    <div class="col-9 offset-1">
+      <%= link_to post_comment_reply_path(reply.comment.post_id, reply.comment.id, reply.id), class: "text-decoration-none text-dark" do %>
+        <%= reply.body %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
+
+<% if current_end_user.email != "guest@example.com" %>
+  <div class=" mt-4  border-bottom">
+    <%= form_with model: [@post, @comment, @reply] do |f| %>
+      <div class="col-11">
+        <%= f.text_area :body,rows:'3',placeholder: "コメントをここに" , class: "form-control" %>
+      </div>
+      <div class="text-right">
+        <%= f.submit "コメントする", class: "btn btn-outline-info" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

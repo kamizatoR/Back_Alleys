@@ -1,5 +1,8 @@
 class Public::CommentsController < ApplicationController
   def show
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @reply = Reply.new
   end
 
   def create
@@ -8,16 +11,27 @@ class Public::CommentsController < ApplicationController
     @comment.end_user_id = current_end_user.id
     @comment.post_id = @post.id
     @comment.save
+
     redirect_to post_path(@post.id)
   end
 
   def edit
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    redirect_to post_comment_path(@post.id, @comment.id)
   end
 
   def destroy
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to post_path(@post.id)
   end
 
   private
