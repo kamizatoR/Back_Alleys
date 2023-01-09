@@ -2,66 +2,68 @@
   <div class="col-5 pr-3">
     <h6 class="text-center my-1">週間ランキング</h6>
     <% @posts.each do |post| %>
-      <div class="card my-3">
+      <% if post.end_user.is_deleted != true %>
+        <div class="card my-3">
 
-        <div class="card-header bg-light">
-          <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
-            <% if post.end_user.image.attached? %>
-              <%= image_tag post.end_user.image, size: "40x40", class: "rounded-circle" %>
+          <div class="card-header bg-light">
+            <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+              <% if post.end_user.image.attached? %>
+                <%= image_tag post.end_user.image, size: "40x40", class: "rounded-circle" %>
+              <% end %>
+              <%= post.end_user.display_name %>
             <% end %>
-            <%= post.end_user.display_name %>
-          <% end %>
-        </div>
-
-        <% if post.image.attached? %>
-          <%= image_tag post.image, class: "p-2" %>
-        <% end %>
-
-        <%= link_to post_path(post.id), class: "text-decoration-none text-dark"  do %>
-          <div class="card-body">
-            <p class="card-title"><%= post.body %></p>
           </div>
-        <% end %>
+
+          <% if post.image.attached? %>
+            <%= image_tag post.image, class: "p-2" %>
+          <% end %>
+
+          <%= link_to post_path(post.id), class: "text-decoration-none text-dark"  do %>
+            <div class="card-body">
+              <p class="card-title"><%= post.body %></p>
+            </div>
+          <% end %>
 
 
-        <div class="card-footer ">
-          <%= post.end_user.display_name %>
+          <div class="card-footer ">
+            <%= post.end_user.display_name %>
+          </div>
         </div>
-      </div>
-
+      <% end %>
     <% end %>
   </div>
 
   <div class="col-5 border-left">
     <h6 class="text-center my-1">新着投稿</h6>
     <% @posts.each do |post| %>
-      <div class="card my-3">
+      <% if post.end_user.is_deleted != true %>
+        <div class="card my-3">
 
-        <div class="card-header bg-light">
-          <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
-            <% if post.end_user.image.attached? %>
-              <%= image_tag post.end_user.image, size: "40x40", class: "rounded-circle" %>
+          <div class="card-header bg-light">
+            <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+              <% if post.end_user.image.attached? %>
+                <%= image_tag post.end_user.image, size: "40x40", class: "rounded-circle" %>
+              <% end %>
+              <%= post.end_user.display_name %>
             <% end %>
-            <%= post.end_user.display_name %>
-          <% end %>
-        </div>
-
-        <% if post.image.attached? %>
-          <%= image_tag post.image, class: "p-2" %>
-        <% end %>
-
-        <%= link_to post_path(post.id), class: "text-decoration-none text-dark"  do %>
-          <div class="card-body">
-            <p class="card-title"><%= post.body %></p>
           </div>
-        <% end %>
+
+          <% if post.image.attached? %>
+            <%= image_tag post.image, class: "p-2" %>
+          <% end %>
+
+          <%= link_to post_path(post.id), class: "text-decoration-none text-dark"  do %>
+            <div class="card-body">
+              <p class="card-title"><%= post.body %></p>
+            </div>
+          <% end %>
 
 
-        <div class="card-footer ">
-          <%= post.end_user.display_name %>
+          <div class="card-footer ">
+            <%= post.end_user.display_name %>
+          </div>
         </div>
-      </div>
-
+      <% end %>
     <% end %>
   </div>
 

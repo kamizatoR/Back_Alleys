@@ -23,10 +23,18 @@ Rails.application.routes.draw do
 
     resources :posts do
       resources :comments, only: [:show, :create, :update, :edit, :destroy] do
-        resources :replies, only: [:show, :create, :update, :edit, :destroy] 
+        resources :replies, only: [:show, :create, :update, :edit, :destroy]
       end
 
     end
+  end
+
+  namespace :admin do
+    get '/end_users/:id/account_suspension' => "end_users#account_suspension", as: 'account_suspension'
+    patch '/end_users/:id' => "end_users#suspended", as: 'suspended'
+    resources :end_users, only: [:index, :show]
+
+
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,4 +1,6 @@
 class Public::RepliesController < ApplicationController
+  before_action :authenticate_end_user!
+  
   def show
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:comment_id])
