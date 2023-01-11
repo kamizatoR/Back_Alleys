@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     patch '/end_users/mypage' => "end_users#update", as: "update_mypage"
     get '/end_users/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
     patch '/end_users/withdraw' => "end_users#withdraw", as: 'withdraw'
+    get '/searches' => "searches#index", as: 'search'
 
     resources :posts do
       resources :comments, only: [:show, :create, :update, :edit, :destroy] do

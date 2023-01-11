@@ -1,0 +1,15 @@
+<div class="container my-4">
+
+    <%= form_with url: search_path, method: :get do |f| %>
+      <div class="row">
+        <%= f.label "検索ジャンル", class: "mr-3 pt-2" %>
+        <%= f.select :range, options_for_select([['ユーザー'], ['投稿']]) %>
+      </div>
+
+      <div class="row mt-2">
+        <%= f.text_field :word, class: "form-control col-9" %>
+        <%= f.submit "検索", class: "btn btn-success col-2 ml-2" %>
+      </div>
+
+    <% end %>
+</div>

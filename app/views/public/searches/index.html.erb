@@ -1,0 +1,11 @@
+<%= render 'search' %>
+
+<table class="table">
+  <% @search_results.each do |search_result| %>
+    <tr>
+      <td>
+        <%= search_result.body %>
+      </td>
+    </tr>
+  <% end %>
+</table>
