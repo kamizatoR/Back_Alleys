@@ -1,57 +1,40 @@
-<h1 class="text-center my-4"><%= current_end_user.display_name %> さんのアカウント情報</h1>
+<div class="container">
+  <div class="header">
+    <div class="row border-bottom">
 
-<div class="container mt-5">
-
-    <% if current_end_user.email != "guest@example.com"%>
-      <div class="row mb-3 justify-content-center">
-        <p class="col-3 mr-2">会員ID</p>
-        <p class="col-4 mr-2 text-center">No.<%= current_end_user.id %></p>
-      </div>
-
-      <div class="row mb-3 justify-content-center">
-        <p class="col-3 mr-2">氏名</p>
-        <p class="col-4 mr-2 text-center"><%= current_end_user.first_name %>　<%= current_end_user.last_name %></p>
-      </div>
-
-      <div class="row mb-3 justify-content-center">
-        <p class="col-3 mr-2">フリガナ</p>
-        <p class="col-4 mr-2 text-center"><%= current_end_user.first_kana %>　<%= current_end_user.last_kana %></p>
-      </div>
-
-      <div class="row mb-3 justify-content-center">
-        <p class="col-3 mr-2">メールアドレス</p>
-        <p class="col-4 mr-2 text-center"><%= current_end_user.email %></p>
-      </div>
-
-      <div class="row mb-3 justify-content-center">
-        <p class="col-3 mr-2">会員ステータス</p>
-          <% if current_end_user.is_deleted == false %>
-            <p class="col-4 mr-2 text-success text-center"><strong>有効</strong></p>
-          <% else %>
-            <p class="col-4 mr-2 text-secondary text-center"><strong>退会</strong></p>
+      <div class="col-5">
+        <div class="row">
+          <% if @end_user.image.attached? %>
+            <%= image_tag @end_user.image, size: "90x90" %>
           <% end %>
+
+          <h3 class=" d-flex align-items-end mb-0 ml-3"><strong><%= @end_user.display_name %></strong></h3>
+        </div>
       </div>
 
-      <div class="row mb-3 justify-content-center">
-        <%= link_to "編集", edit_mypage_path %>
-      </div>
+      <div class="col-3 ml-5">
+        <nav class="nav nav-bar flex-column">
 
-    <% else %>
-      <div class="row mb-3 justify-content-center">
-        <p class="col-3 mr-2">会員ID</p>
-        <p class="col-4 mr-2 text-center">No.<%= current_end_user.id %></p>
-      </div>
+          <ul class="navbar-nav">
 
-      <div class="row mb-3 justify-content-center">
-        <p class="col-3 mr-2">表示名</p>
-        <p class="col-4 mr-2 text-center"><%= current_end_user.display_name %></p>
-      </div>
+            <li class="nav-item">
+              フォロワー
+            </li>
+            <li class="nav-item my-2">
+              フォロー
+            </li>
+            <li class="nav-item">
+              いいね数
+            </li>
 
-      <div class="row mb-3 justify-content-center">
-        <p class="col-3 mr-2">会員ステータス</p>
-        <p class="col-4 mr-2 text-success text-center"><strong>ゲスト会員</strong></p>
+        </nav>
 
       </div>
-    <% end %>
 
+      <div class="col-3  d-flex align-items-center">
+        <p>フォローする</p>
+      </div>
+
+    </div>
   </div>
+</div>

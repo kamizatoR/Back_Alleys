@@ -15,12 +15,15 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    get '/end_users/mypage' => "end_users#show", as: "mypage"
+    get '/end_users/:display_name' => "end_users#show", as: "timeline"
+
+    get '/end_users/mypage' => "end_users#mypage", as: "mypage"
     get '/end_users/mypage/edit' => "end_users#edit", as: "edit_mypage"
     patch '/end_users/mypage' => "end_users#update", as: "update_mypage"
     get '/end_users/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
     patch '/end_users/withdraw' => "end_users#withdraw", as: 'withdraw'
     get '/searches' => "searches#index", as: 'search'
+    get '/searches/result' => "searches#result", as: 'search_result'
 
     resources :posts do
       resources :comments, only: [:show, :create, :update, :edit, :destroy] do

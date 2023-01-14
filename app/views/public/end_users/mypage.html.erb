@@ -1,0 +1,57 @@
+<h1 class="text-center my-4"><%= current_end_user.display_name %> さんのアカウント情報</h1>
+
+<div class="container mt-5">
+
+    <% if current_end_user.email != "guest@example.com"%>
+      <div class="row mb-3 justify-content-center">
+        <p class="col-3 mr-2">会員ID</p>
+        <p class="col-4 mr-2 text-center">No.<%= current_end_user.id %></p>
+      </div>
+
+      <div class="row mb-3 justify-content-center">
+        <p class="col-3 mr-2">氏名</p>
+        <p class="col-4 mr-2 text-center"><%= current_end_user.first_name %>　<%= current_end_user.last_name %></p>
+      </div>
+
+      <div class="row mb-3 justify-content-center">
+        <p class="col-3 mr-2">フリガナ</p>
+        <p class="col-4 mr-2 text-center"><%= current_end_user.first_kana %>　<%= current_end_user.last_kana %></p>
+      </div>
+
+      <div class="row mb-3 justify-content-center">
+        <p class="col-3 mr-2">メールアドレス</p>
+        <p class="col-4 mr-2 text-center"><%= current_end_user.email %></p>
+      </div>
+
+      <div class="row mb-3 justify-content-center">
+        <p class="col-3 mr-2">会員ステータス</p>
+          <% if current_end_user.is_deleted == false %>
+            <p class="col-4 mr-2 text-success text-center"><strong>有効</strong></p>
+          <% else %>
+            <p class="col-4 mr-2 text-secondary text-center"><strong>退会</strong></p>
+          <% end %>
+      </div>
+
+      <div class="row mb-3 justify-content-center">
+        <%= link_to "編集", edit_mypage_path %>
+      </div>
+
+    <% else %>
+      <div class="row mb-3 justify-content-center">
+        <p class="col-3 mr-2">会員ID</p>
+        <p class="col-4 mr-2 text-center">No.<%= current_end_user.id %></p>
+      </div>
+
+      <div class="row mb-3 justify-content-center">
+        <p class="col-3 mr-2">表示名</p>
+        <p class="col-4 mr-2 text-center"><%= current_end_user.display_name %></p>
+      </div>
+
+      <div class="row mb-3 justify-content-center">
+        <p class="col-3 mr-2">会員ステータス</p>
+        <p class="col-4 mr-2 text-success text-center"><strong>ゲスト会員</strong></p>
+
+      </div>
+    <% end %>
+
+</div>

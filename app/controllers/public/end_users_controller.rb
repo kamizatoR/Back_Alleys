@@ -1,7 +1,11 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
-  
+
   def show
+   @end_user = EndUser.find_by(display_name: params[:display_name])
+  end
+
+  def mypage
   end
 
   def edit
@@ -23,7 +27,7 @@ class Public::EndUsersController < ApplicationController
     reset_session
     redirect_to root_path
   end
-  
+
 
   private
     def end_user_params

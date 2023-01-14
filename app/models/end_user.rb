@@ -10,6 +10,8 @@ class EndUser < ApplicationRecord
 
   has_one_attached :image
 
+  validates :display_name, uniqueness: true
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -23,6 +25,10 @@ class EndUser < ApplicationRecord
 
   def self.looks(word)
     @end_users = EndUser.where('display_name LIKE?', "%#{word}%")
+  end
+
+  def not_display_guest
+      self.email != 'guest@example.com'
   end
 
 end
