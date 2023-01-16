@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     get '/searches' => "searches#index", as: 'search'
     get '/searches/result' => "searches#result", as: 'search_result'
 
+    post '/end_users/:display_name/following' => "follow_followers#create", as: "end_user_following"
+    get '/following' => "follow_followers#following"
+
     resources :posts do
       resources :comments, only: [:show, :create, :update, :edit, :destroy] do
         resources :replies, only: [:show, :create, :update, :edit, :destroy]

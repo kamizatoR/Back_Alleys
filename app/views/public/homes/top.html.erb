@@ -40,7 +40,7 @@
         <div class="card my-3">
 
           <div class="card-header bg-light">
-            <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+            <%= link_to  timeline_path(post.end_user.display_name), class: "text-decoration-none text-dark" do  %>
               <% if post.end_user.image.attached? %>
                 <%= image_tag post.end_user.image, size: "40x40", class: "rounded-circle" %>
               <% end %>
