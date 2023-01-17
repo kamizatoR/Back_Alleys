@@ -1,0 +1,15 @@
+
+<div class="row mt-5">
+  <table class="table">
+    <% @end_user_follows.each do |follow| %>
+      <tr>
+        <td>
+          <% if follow.image.attached? %>
+              <%= image_tag follow.image, size: "25x25" %>
+          <% end %>
+          <%= follow.display_name %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

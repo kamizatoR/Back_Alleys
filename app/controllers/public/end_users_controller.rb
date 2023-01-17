@@ -1,11 +1,12 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
 
-  def show
+  def timeline
    @end_user = EndUser.find_by(display_name: params[:display_name])
   end
 
   def mypage
+    @end_uesr = current_end_user
   end
 
   def edit

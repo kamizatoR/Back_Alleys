@@ -15,18 +15,25 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    get '/end_users/:display_name' => "end_users#show", as: "timeline"
+
 
     get '/end_users/mypage' => "end_users#mypage", as: "mypage"
     get '/end_users/mypage/edit' => "end_users#edit", as: "edit_mypage"
     patch '/end_users/mypage' => "end_users#update", as: "update_mypage"
+
+    get '/end_users/:display_name' => "end_users#timeline", as: "timeline"
+
     get '/end_users/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
     patch '/end_users/withdraw' => "end_users#withdraw", as: 'withdraw'
     get '/searches' => "searches#index", as: 'search'
     get '/searches/result' => "searches#result", as: 'search_result'
 
     post '/end_users/:display_name/following' => "follow_followers#create", as: "end_user_following"
-    get '/following' => "follow_followers#following"
+
+    get 'end_users/:display_name/follows' => "follow_followers#follows", as: "follow_index"
+    get 'end_users/:display_name/followers' => "follow_followers#followers", as: "follower_index"
+
+    delete '/following' => "follow_followers#destroy", as: "destroy"
 
     resources :posts do
       resources :comments, only: [:show, :create, :update, :edit, :destroy] do

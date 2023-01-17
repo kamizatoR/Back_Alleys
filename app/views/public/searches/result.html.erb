@@ -10,10 +10,15 @@
             <% if search_result.end_user.image.attached? %>
               <%= image_tag search_result.end_user.image, size: "25x25" %>
             <% end %>
-            <%= search_result.end_user.display_name %>
+
+            <%= link_to timeline_path(search_result.end_user.display_name), class: "text-decoration-none text-dark" do %>
+              <%= search_result.end_user.display_name %>
+            <% end %>
           </td>
           <td>
+            <%= link_to post_path(search_result.id), class: "text-decoration-none text-dark" do %>
               <%= search_result.body %>
+            <% end %>
           </td>
         </tr>
       <% end %>
@@ -28,7 +33,11 @@
             <% if search_result.image.attached? %>
               <%= image_tag search_result.image, size: "25x25" %>
             <% end %>
-            <%= search_result.display_name %>
+
+            <%= link_to timeline_path(search_result.display_name), class: "text-decoration-none text-dark" do %>
+
+              <%= search_result.display_name %>
+            <% end %>
           </td>
         </tr>
       <% end %>

@@ -8,17 +8,11 @@ class EndUser < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :replies, dependent: :destroy
 
-  #自分がフォローしているユーザーとの関連
-  #自分から見て、フォローされる側のEndUserを(中間テーブルを介して)集める。なので親はfollowed_id(フォローする側)
   has_many :active_relationships, class_name: "FollowFollower", foreign_key: "followed_id", dependent: :destroy
-  # 中間テーブルを介してUser(フォローされた側)を集めることを「followings」と定義
-  has_many :followings, through: :active_relationships, source: :followed
+  has_many :followings, through: :active_relationships, source: :follower
 
-  #自分がフォローされるユーザーとの関連
-  #フォローされる側のEndUserから見て、フォローしてくる側のEndUserを(中間テーブルを介して)集める。なので親はfollower_id(フォローされる側)
   has_many :passive_relationships, class_name: "FollowFollower", foreign_key: "follower_id", dependent: :destroy
-  #中間テーブルを介してEndUser(フォローする側)を集めることを「followers」と定義
-  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :followers, through: :passive_relationships, source: :followed
 
 
   has_one_attached :image
@@ -44,7 +38,13 @@ class EndUser < ApplicationRecord
       self.email != 'guest@example.com'
   end
 
-  def follow(user_id)
+  def follow(end_user_id)
+
+    active_relationships.new(follower_id: end_user_id)
+  end
+
+  def following?(end_uesr)
+    followings.include?(end_user)
   end
 
 
