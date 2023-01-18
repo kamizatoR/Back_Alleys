@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   scope module: :public do
 
-
     get '/end_users/mypage' => "end_users#mypage", as: "mypage"
     get '/end_users/mypage/edit' => "end_users#edit", as: "edit_mypage"
     patch '/end_users/mypage' => "end_users#update", as: "update_mypage"
@@ -27,14 +26,13 @@ Rails.application.routes.draw do
     patch '/end_users/withdraw' => "end_users#withdraw", as: 'withdraw'
     get '/searches' => "searches#index", as: 'search'
     get '/searches/result' => "searches#result", as: 'search_result'
-
-    post '/end_users/:display_name/following' => "follow_followers#create", as: "end_user_following"
-
+    
+    #フォロー関連のURL
+    post '/end_users/:display_name/following' => "follow_followers#create", as: "following"
+    delete '/end_users/:display_name/unfollowing' => "follow_followers#destroy", as: "unfollow"
     get 'end_users/:display_name/follows' => "follow_followers#follows", as: "follow_index"
     get 'end_users/:display_name/followers' => "follow_followers#followers", as: "follower_index"
-
-    delete '/following' => "follow_followers#destroy", as: "destroy"
-
+    
     resources :posts do
       resources :comments, only: [:show, :create, :update, :edit, :destroy] do
         resources :replies, only: [:show, :create, :update, :edit, :destroy]
@@ -47,7 +45,6 @@ Rails.application.routes.draw do
     get '/end_users/:id/account_suspension' => "end_users#account_suspension", as: 'account_suspension'
     patch '/end_users/:id' => "end_users#suspended", as: 'suspended'
     resources :end_users, only: [:index, :show]
-
 
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

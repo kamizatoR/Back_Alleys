@@ -1,3 +1,25 @@
-.mainbar, .subbar{
-  height: 75vh;
+.h75{
+  height: 270px;
+}
+
+
+.box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: calc(100% / 3);
+}
+
+.card-box{
+
+  margin-bottom: 25px;
+}
+
+.img{
+  width: 240px;
+  height: 140px;
+}
+
+.h-200{
+  height:200px;
 }

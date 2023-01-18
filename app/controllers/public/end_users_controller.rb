@@ -29,7 +29,6 @@ class Public::EndUsersController < ApplicationController
     redirect_to root_path
   end
 
-
   private
     def end_user_params
       params.require(:end_user).permit(:display_name, :first_name, :last_name, :first_kana, :last_kana, :email, :image)

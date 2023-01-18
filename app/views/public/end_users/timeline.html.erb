@@ -28,6 +28,7 @@
             <li class="nav-item">
               いいね数
             </li>
+          </ul>
 
         </nav>
 
@@ -36,13 +37,55 @@
       <div class="col-3  d-flex align-items-center">
         <% if current_end_user != @end_user %>
           <% if current_end_user.followings.include?(@end_user) %>
-            <%= link_to "フォロー解除", destroy_path, method: :delete %>
+            <%= link_to "フォロー解除", unfollow_path(@end_user.display_name), method: :delete %>
           <% else %>
-            <%= link_to "フォローする", end_user_following_path(@end_user.display_name), method: :post %>
+            <%= link_to "フォローする", following_path(@end_user.display_name), method: :post %>
           <% end %>
         <% end %>
       </div>
 
     </div>
   </div>
+
+  <div class="row mt-5">
+
+    <% @end_user.posts.each do |post| %>
+      <% if post.end_user.is_deleted != true %>
+      <div class="col-4 h75">
+        <div class="card my-3 vh75">
+
+        <% if post.image.attached? %>
+
+            <%= image_tag post.image, size: "213x130", class: "p-1" %>
+
+            <%= link_to post_path(post.id), class: "text-decoration-none text-dark"  do %>
+
+              <div class="card-body">
+                <p class="card-title"><%= post.body %></p>
+              </div>
+              <div class="card-body">
+                <p class="card-text"><%= post.end_user.display_name %></p>
+              </div>
+
+            <% end %>
+
+        <% else %>
+
+            <%= link_to post_path(post.id), class: "text-decoration-none text-dark"  do %>
+              <div class="card-body h-200 ">
+                <p class="card-title"><%= post.body %></p>
+              </div>
+              <div class="card-body">
+                <p class="card-text"><%= post.end_user.display_name %></p>
+              </div>
+            <% end %>
+
+        <% end %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+
+  </div>
+
 </div>

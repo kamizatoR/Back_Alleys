@@ -39,13 +39,11 @@ class EndUser < ApplicationRecord
   end
 
   def follow(end_user_id)
-
     active_relationships.new(follower_id: end_user_id)
   end
-
-  def following?(end_uesr)
-    followings.include?(end_user)
+  
+  def unfollow(end_user_id)
+    active_relationships.find_by(follower_id: end_user_id).destroy
   end
-
 
 end

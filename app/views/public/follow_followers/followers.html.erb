@@ -1,13 +1,23 @@
 
 <div class="row mt-5">
+  <div class="col text-center">
+    <% if current_end_user == @end_user %>
+      <h4>マイフォロワーリスト</h4>
+    <% else %>
+      <h4><%= @end_user.display_name %>さんのフォローリスト</h4>
+    <% end %>
+  </div>
+
   <table class="table">
     <% @end_user_followers.each do |follower| %>
       <tr>
         <td>
-          <% if follower.image.attached? %>
-              <%= image_tag follower.image, size: "25x25" %>
+          <%= link_to timeline_path(follower.display_name), class: "text-decoration-none text-dark" do %>
+            <% if follower.image.attached? %>
+                <%= image_tag follower.image, size: "25x25" %>
+            <% end %>
+            <%= follower.display_name %>
           <% end %>
-          <%= follower.display_name %>
         </td>
       </tr>
     <% end %>
