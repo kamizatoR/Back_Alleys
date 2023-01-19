@@ -44,7 +44,7 @@
               <div  class="row bd-highlight ml-4 align-items-center">
                 <div class="col-6 text-center">
                   <div class="row">
-                    <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+                    <%= link_to  mypage_path(current_end_user.display_name), class: "text-decoration-none text-dark" do  %>
                       <% if current_end_user.image.attached? %>
                         <%= image_tag current_end_user.image, size: "40x40", class: "rounded-circle" %>
                       <% end %>
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="col-6">
-                  <%= link_to  new_post_path, class: 'btn btn-outline-dark nav-link' do %>
+                  <%= link_to  new_post_path(current_end_user.display_name), class: 'btn btn-outline-dark nav-link' do %>
                     投稿  <i class="fas fa-paper-plane"></i>
                   <% end %>
                 </div>

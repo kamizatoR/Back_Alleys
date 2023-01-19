@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_23_131149) do
+ActiveRecord::Schema.define(version: 2023_01_19_050932) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -90,9 +90,10 @@ ActiveRecord::Schema.define(version: 2022_12_23_131149) do
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "profilable_type", null: false
-    t.integer "profilable_id", null: false
-    t.index ["profilable_type", "profilable_id"], name: "index_likes_on_profilable"
+    t.string "table_type", null: false
+    t.integer "table_id", null: false
+    t.integer "end_user_id"
+    t.index ["table_type", "table_id"], name: "index_likes_on_profilable"
   end
 
   create_table "posts", force: :cascade do |t|

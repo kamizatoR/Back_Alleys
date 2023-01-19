@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :end_user
   has_many :comments, dependent: :destroy
+  has_many :likes, as: :tableable
+  
   has_one_attached :image
 
   def end_user_deleted?(resource)

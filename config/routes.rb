@@ -15,30 +15,48 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
+    #ユーザー情報関連のURL
+    get '/:display_name/mypage' => "end_users#mypage", as: "mypage"
+    get '/:display_name/mypage/edit' => "end_users#edit", as: "edit_mypage"
+    patch '/:display_name/mypage' => "end_users#update", as: "update_mypage"
+    get '/:display_name/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
+    patch '/:display_name/withdraw' => "end_users#withdraw", as: 'withdraw'
 
-    get '/end_users/mypage' => "end_users#mypage", as: "mypage"
-    get '/end_users/mypage/edit' => "end_users#edit", as: "edit_mypage"
-    patch '/end_users/mypage' => "end_users#update", as: "update_mypage"
+    #ユーザータイムラインのURL
+    get '/:display_name' => "end_users#timeline", as: "timeline"
 
-    get '/end_users/:display_name' => "end_users#timeline", as: "timeline"
-
-    get '/end_users/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
-    patch '/end_users/withdraw' => "end_users#withdraw", as: 'withdraw'
+    #検索関連のURL
     get '/searches' => "searches#index", as: 'search'
     get '/searches/result' => "searches#result", as: 'search_result'
-    
-    #フォロー関連のURL
-    post '/end_users/:display_name/following' => "follow_followers#create", as: "following"
-    delete '/end_users/:display_name/unfollowing' => "follow_followers#destroy", as: "unfollow"
-    get 'end_users/:display_name/follows' => "follow_followers#follows", as: "follow_index"
-    get 'end_users/:display_name/followers' => "follow_followers#followers", as: "follower_index"
-    
-    resources :posts do
-      resources :comments, only: [:show, :create, :update, :edit, :destroy] do
-        resources :replies, only: [:show, :create, :update, :edit, :destroy]
-      end
 
-    end
+    #フォロー関連のURL
+    post '/:display_name/following' => "follow_followers#create", as: "following"
+    delete '/:display_name/unfollowing' => "follow_followers#destroy", as: "unfollow"
+    get '/:display_name/follows' => "follow_followers#follows", as: "follow_index"
+    get '/:display_name/followers' => "follow_followers#followers", as: "follower_index"
+
+    #投稿関連のURL
+    get '/:display_name/posts/new' => "posts#new", as: "new_post"
+    get '/:display_name/posts/:id' => "posts#show", as: "post"
+    post '/:display_name/posts' => "posts#create", as: "posts"
+    get '/:display_name//:id/edit' => "posts#edit", as: "edit_post"
+    patch '/:display_name/:id' => "posts#update", as: "update_post"
+    delete '/:display_name/:id' => "posts#destroy", as: "destroy_post"
+
+    #コメント関連のURL
+    post '/:display_name/:post_id/comments' => "comments#create", as: "comments"
+    get '/:display_name/:post_id/comments/:id' => "comments#show", as: "comment"
+    get '/:display_name/:post_id/comments/:id/edit' => "comments#edit", as: "edit_comment"
+    patch '/:display_name/:post_id/comments/:id' => "comments#update", as: "update_comment"
+    delete '/:display_name/:post_id/comments/:id' => "comments#destroy", as: "destroy_comment"
+
+    #リプライ関連のURL
+    post '/:display_name/:post_id/:comment_id/replies' => "replies#create", as: "replies"
+    get '/:display_name/:post_id/:comment_id/replies/:id' => "replies#show", as: "reply"
+    get '/:display_name/:post_id/:comment_id//replies/:id/edit' => "replies#edit", as: "edit_reply"
+    patch '/:display_name/:post_id/:comment_id/replies/:id' => "replies#update", as: "update_reply"
+    delete '/:display_name/:post_id/:comment_id/replies/:id' => "replies#destroy", as: "destroy_reply"
+
   end
 
   namespace :admin do

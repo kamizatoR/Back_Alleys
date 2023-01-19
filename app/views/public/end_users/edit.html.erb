@@ -1,7 +1,7 @@
 <h1 class="text-center my-4">情報編集</h1>
 
   <div class="container mt-5">
-    <%= form_with model: @end_user, url: update_mypage_path do |f| %>
+    <%= form_with model: @end_user, url: update_mypage_path(@end_user.display_name) do |f| %>
 
       <div class="row mx-4 mb-3 px-5 ">
         <p class="mr-2">プロフィール画像</p>
@@ -32,7 +32,7 @@
 
       <div class="row mx-3 mt-5 mb-0 px-5 justify-content-around ">
         <%= f.submit "編集内容を保存", class: "btn btn-success col-4" %>
-        <%= link_to "退会する", unsubscribe_path, class: "btn btn-danger col-4"%>
+        <%= link_to "退会する", unsubscribe_path(@end_user.display_name), class: "btn btn-danger col-4"%>
       </div>
     <% end %>
 

@@ -58,7 +58,7 @@
 
             <%= image_tag post.image, size: "213x130", class: "p-1" %>
 
-            <%= link_to post_path(post.id), class: "text-decoration-none text-dark"  do %>
+            <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
 
               <div class="card-body">
                 <p class="card-title"><%= post.body %></p>
@@ -71,7 +71,7 @@
 
         <% else %>
 
-            <%= link_to post_path(post.id), class: "text-decoration-none text-dark"  do %>
+            <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
               <div class="card-body h-200 ">
                 <p class="card-title"><%= post.body %></p>
               </div>

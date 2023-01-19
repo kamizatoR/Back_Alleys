@@ -2,7 +2,7 @@
     <div class="col-10 text-center">
 
       <div class="row mb-3">
-          <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+          <%= link_to  timeline_path(@post.end_user.display_name), class: "text-decoration-none text-dark" do  %>
               <% if @post.end_user.image.attached? %>
                 <%= image_tag @post.end_user.image, size: "40x40", class: "rounded-circle" %>
               <% end %>
@@ -25,10 +25,10 @@
       <div class="col-2 pl-0">
         <ul class="list-unstyled">
           <li>
-            <%= link_to "編集", edit_post_path %>
+            <%= link_to "編集", edit_post_path(@post.end_user.display_name) %>
           </li>
           <li>
-            <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm"=> "本当に退会しますか？"  %>
+            <%= link_to "削除", destroy_post_path(@post.end_user.display_name, @post.id), method: :delete, "data-confirm"=> "本当に削除しますか？"  %>
           </li>
         </ul>
       </div>
@@ -37,7 +37,7 @@
 </div>
 
 <div class="row mt-5 mb-2 border-top border-bottom">
-  <%= @post.comments.count %>件投稿件数
+  コメント件数　<%= @post.comments.count %>件
 </div>
 
 
@@ -52,7 +52,7 @@
     </div>
 
     <div class="col-9 offset-1">
-      <%= link_to post_comment_path(comment.post_id,comment.id), class: "text-decoration-none text-dark" do %>
+      <%= link_to comment_path(comment.post.end_user.display_name, comment.post_id,comment.id), class: "text-decoration-none text-dark" do %>
         <%= comment.body %>
       <% end %>
     </div>
@@ -61,7 +61,7 @@
 
 <% if current_end_user.email != "guest@example.com" %>
   <div class=" mt-4  border-bottom">
-    <%= form_with model: [@post, @comment] do |f| %>
+    <%= form_with model: [@post, @comment] , url: comments_path(@post.end_user.display_name, @post.id) do |f| %>
       <div class="col-11">
         <%= f.text_area :body,rows:'3',placeholder: "コメントをここに" , class: "form-control" %>
       </div>

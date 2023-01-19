@@ -2,13 +2,13 @@
     <div class="col-10 text-center">
 
       <div class="row mb-3">
-          <%= link_to  mypage_path, class: "text-decoration-none text-dark" do  %>
+          <%= link_to  timeline_path(@comment.end_user.display_name), class: "text-decoration-none text-dark" do  %>
               <% if @comment.end_user.image.attached? %>
                 <%= image_tag @comment.end_user.image, size: "40x40", class: "rounded-circle" %>
               <% end %>
             <strong><%= @comment.end_user.display_name %></strong>
           <% end %>
-          <%= link_to post_path(@post.id), class: "text-decoration-none text-info"  do %>
+          <%= link_to post_path(@post.end_user.display_name, @post.id), class: "text-decoration-none text-info"  do %>
             <small class="ml-3">返信先<%= @comment.post.end_user.display_name %></small>
           <% end %>
       </div>
@@ -23,10 +23,10 @@
     <div class="col-2 pl-0">
       <ul class="list-unstyled">
         <li>
-          <%= link_to "編集", edit_post_comment_path(@post.id, @comment.id) %>
+          <%= link_to "編集", edit_comment_path(@post.end_user.display_name, @post.id, @comment.id) %>
         </li>
         <li>
-          <%= link_to "削除", post_comment_path(@post.id, @comment.id), method: :delete, "data-confirm"=> "本当に退会しますか？" %>
+          <%= link_to "削除", destroy_comment_path(@post.end_user.display_name, @post.id, @comment.id), method: :delete, "data-confirm"=> "本当に削除しますか？" %>
         </li>
       </ul>
     </div>
@@ -35,7 +35,7 @@
 </div>
 
 <div class="row mt-5 mb-2 border-top border-bottom">
-  <%= @comment.replies.count %>件投稿件数
+  リプライ件数　<%= @comment.replies.count %>件
 </div>
 
 <% @comment.replies.each do |reply| %>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="col-9 offset-1">
-      <%= link_to post_comment_reply_path(reply.comment.post_id, reply.comment.id, reply.id), class: "text-decoration-none text-dark" do %>
+      <%= link_to reply_path(@post.end_user.display_name, reply.comment.post_id, reply.comment.id, reply.id), class: "text-decoration-none text-dark" do %>
         <%= reply.body %>
       <% end %>
     </div>
@@ -60,7 +60,7 @@
 
 <% if current_end_user.email != "guest@example.com" %>
   <div class=" mt-4  border-bottom">
-    <%= form_with model: [@post, @comment, @reply] do |f| %>
+    <%= form_with model: [@post, @comment, @reply], url: replies_path(@post.end_user.display_name, @post.id, @comment.id) do |f| %>
       <div class="col-11">
         <%= f.text_area :body,rows:'3',placeholder: "コメントをここに" , class: "form-control" %>
       </div>

@@ -1,7 +1,7 @@
 <div class="row mt-5">
   <div class="col-10 px-5 mt-5 justify-content-center text-center",>
 
-        <%= form_with model: [@post, @comment], url: post_comment_path(@post.id, @comment.id),method: :patch do |f| %>
+        <%= form_with model: [@post, @comment], url: update_comment_path(@post.end_user.display_name, @post.id, @comment.id), method: :patch do |f| %>
 
 
           <div class="row  mb-3  justify-content-around ">
@@ -19,7 +19,7 @@
   <div class="col-2 pl-0">
     <ul class="list-unstyled">
       <li>
-        <%= link_to "削除", post_comment_path(@post.id, @comment.id), method: :delete, "data-confirm"=> "本当に退会しますか？" %>
+        <%= link_to "削除", destroy_comment_path(@post.end_user.display_name, @post.id, @comment.id), method: :delete, "data-confirm"=> "本当に削除しますか？" %>
       </li>
     </ul>
   </div>

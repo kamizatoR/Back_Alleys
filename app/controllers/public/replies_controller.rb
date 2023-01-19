@@ -1,6 +1,6 @@
 class Public::RepliesController < ApplicationController
   before_action :authenticate_end_user!
-  
+
   def show
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:comment_id])
@@ -14,7 +14,7 @@ class Public::RepliesController < ApplicationController
     @reply.end_user_id = current_end_user.id
     @reply.comment_id = @comment.id
     @reply.save
-    redirect_to post_comment_path(@post.id, @comment.id)
+    redirect_to comment_path(@post.end_user.display_name, @post.id, @comment.id)
   end
 
   def edit
@@ -28,7 +28,7 @@ class Public::RepliesController < ApplicationController
     @comment = Comment.find(params[:comment_id])
     @reply = Reply.find(params[:id])
     @reply.update(reply_params)
-    redirect_to post_comment_reply_path(@post.id, @comment.id, @reply.id)
+    redirect_to reply_path(@post.end_user.display_name, @post.id, @comment.id, @reply.id)
   end
 
   def destroy
@@ -36,7 +36,7 @@ class Public::RepliesController < ApplicationController
     @comment = Comment.find(params[:comment_id])
     @reply = Reply.find(params[:id])
     @reply.destroy
-    redirect_to post_comment_path(@post.id, @comment.id)
+    redirect_to comment_path(@post.end_user.display_name, @post.id, @comment.id)
 
   end
 

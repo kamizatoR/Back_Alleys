@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_end_user!
-  
+
   def show
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
@@ -13,8 +13,7 @@ class Public::CommentsController < ApplicationController
     @comment.end_user_id = current_end_user.id
     @comment.post_id = @post.id
     @comment.save
-
-    redirect_to post_path(@post.id)
+    redirect_to post_path(@post.end_user.display_name, @post.id)
   end
 
   def edit
@@ -26,14 +25,14 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
-    redirect_to post_comment_path(@post.id, @comment.id)
+    redirect_to comment_path(@post.end_user.display_name, @post.id, @comment.id)
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to post_path(@post.id)
+    redirect_to post_path(@post.end_user.display_name, @post.id)
   end
 
   private
