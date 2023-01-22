@@ -5,6 +5,7 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @reply = Reply.new
+    @like = Like.new
   end
 
   def create
@@ -36,7 +37,9 @@ class Public::CommentsController < ApplicationController
   end
 
   private
+  
   def comment_params
     params.require(:comment).permit(:body)
   end
+  
 end

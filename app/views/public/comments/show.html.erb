@@ -36,6 +36,9 @@
 
 <div class="row mt-5 mb-2 border-top border-bottom">
   リプライ件数　<%= @comment.replies.count %>件
+
+  <%= render 'public/likes/like_form', table: @comment %>
+
 </div>
 
 <% @comment.replies.each do |reply| %>
@@ -60,7 +63,7 @@
 
 <% if current_end_user.email != "guest@example.com" %>
   <div class=" mt-4  border-bottom">
-    <%= form_with model: [@post, @comment, @reply], url: replies_path(@post.end_user.display_name, @post.id, @comment.id) do |f| %>
+    <%= form_with model: @reply, url: replies_path(@post.end_user.display_name, @post.id, @comment.id) do |f| %>
       <div class="col-11">
         <%= f.text_area :body,rows:'3',placeholder: "コメントをここに" , class: "form-control" %>
       </div>

@@ -38,8 +38,11 @@
 
 <div class="row mt-5 mb-2 border-top border-bottom">
   コメント件数　<%= @post.comments.count %>件
-</div>
+  いいね件数　<%= @post.likes.count %>件
 
+  <%= render 'public/likes/like_form', table: @post %>
+
+</div>
 
   <% @post.comments.each do |comment| %>
   <div class="row py-3 border-bottom">

@@ -14,10 +14,12 @@ class EndUser < ApplicationRecord
   has_many :passive_relationships, class_name: "FollowFollower", foreign_key: "follower_id", dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :followed
 
+  has_many :likes, dependent: :destroy
+
 
   has_one_attached :image
 
-  validates :display_name, uniqueness: true
+  validates :display_name, presence: true
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -41,7 +43,7 @@ class EndUser < ApplicationRecord
   def follow(end_user_id)
     active_relationships.new(follower_id: end_user_id)
   end
-  
+
   def unfollow(end_user_id)
     active_relationships.find_by(follower_id: end_user_id).destroy
   end
