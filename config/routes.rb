@@ -59,6 +59,10 @@ Rails.application.routes.draw do
 
     #いいね関連のURL
     resources :likes, only: [:create]
+    get ':display_name/likes' => "likes#index", as: "like_index"
+    get ':display_name/post_likes' => "likes#post_likes", as: "post_likes"
+    get ':display_name/comment_likes' => "likes#comment_likes", as: "comment_likes"
+    get ':display_name/reply_likes' => "likes#reply_likes", as: "reply_likes"
 
   end
 

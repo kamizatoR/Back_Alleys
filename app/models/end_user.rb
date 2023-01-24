@@ -48,4 +48,16 @@ class EndUser < ApplicationRecord
     active_relationships.find_by(follower_id: end_user_id).destroy
   end
 
+  def post_like
+    Like.where(table_type: "Post")
+  end
+  
+  def comment_like
+    Like.where(table_type: "Comment")
+  end
+  
+  def post_like
+    Like.where(table_type: "Reply")
+  end
+
 end

@@ -26,7 +26,8 @@
 
 
           <div class="card-footer ">
-            <%= post.end_user.display_name %>
+            💭 <%= post.comments.count %>
+            ♡ <%= post.likes.count %>
           </div>
         </div>
       <% end %>
@@ -59,7 +60,8 @@
           <% end %>
 
           <div class="card-footer ">
-            <%= post.end_user.display_name %>
+            💭 <%= post.comments.count %>
+            ♡ <%= post.likes.count %>
           </div>
         </div>
       <% end %>

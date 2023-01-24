@@ -26,7 +26,8 @@
               <%= @end_user.followings.count %>人
             </li>
             <li class="nav-item">
-              いいね数
+              <%= link_to " いいね",like_index_path, class: "text-decoration-none text-dark" %>
+              <%= @end_user.likes.count %> 件
             </li>
           </ul>
 
