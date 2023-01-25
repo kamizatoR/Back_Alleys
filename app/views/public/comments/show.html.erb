@@ -37,7 +37,12 @@
 <div class="row mt-5 mb-2 border-top border-bottom">
   リプライ件数　<%= @comment.replies.count %>件
 
-  <%= render 'public/likes/like_form', table: @comment %>
+  <% if current_end_user.liked_by?(@comment.id) %>
+    <%= link_to "取り消す", unliked_path(table_id: @comment.id), method: :delete %>
+  <% else %>
+    <%= render 'public/likes/like_form', table: @comment %>
+  <% end %>
+  
   いいね件数　<%= @comment.likes.count %>件
 
 </div>

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
+    delete 'likes/:id' => "likes#destroy", as: "unliked"
+
     #ユーザー情報関連のURL
     get '/:display_name/mypage' => "end_users#mypage", as: "mypage"
     get '/:display_name/mypage/edit' => "end_users#edit", as: "edit_mypage"
@@ -58,11 +60,12 @@ Rails.application.routes.draw do
     delete '/:display_name/:post_id/:comment_id/replies/:id' => "replies#destroy", as: "destroy_reply"
 
     #いいね関連のURL
-    resources :likes, only: [:create]
+    resources :likes, only: [:create,]
     get ':display_name/likes' => "likes#index", as: "like_index"
     get ':display_name/post_likes' => "likes#post_likes", as: "post_likes"
     get ':display_name/comment_likes' => "likes#comment_likes", as: "comment_likes"
     get ':display_name/reply_likes' => "likes#reply_likes", as: "reply_likes"
+
 
   end
 

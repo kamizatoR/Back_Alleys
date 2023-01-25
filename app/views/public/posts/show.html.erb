@@ -40,7 +40,11 @@
   コメント件数　<%= @post.comments.count %>件
   いいね件数　<%= @post.likes.count %>件
 
-  <%= render 'public/likes/like_form', table: @post %>
+  <% if current_end_user.liked_by?(@post.id) %>
+    <%= link_to "取り消す", unliked_path(table_id: @post.id), method: :delete %>
+  <% else %>
+    <%= render 'public/likes/like_form', table: @post %>
+  <% end %>
 
 </div>
 

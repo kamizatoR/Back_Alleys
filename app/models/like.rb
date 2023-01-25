@@ -2,13 +2,17 @@ class Like < ApplicationRecord
   belongs_to :end_user
   belongs_to :table, polymorphic: true
 
-
-  def liked_by?(end_uesr)
-
+  def liked_by?
+    self.where(end_user_id: end_user.id).present?
   end
 
-  def post_like
-    Like.where(table_type: "Post")
+  def unliked(end_uesr)
+    self.where(end_user: end_user)
   end
+  
+  def liked_count
+    likes.count
+  end
+
 
 end

@@ -6,9 +6,16 @@ class Public::LikesController < ApplicationController
     redirect_to timeline_path(current_end_user.display_name)
   end
 
+  def destroy
+    @like = current_end_user.likes.where(table_id: params[:table_id]).first
+    @like.destroy
+    redirect_to root_path
+  end
+
   def index
     @end_user = EndUser.find_by(display_name: params[:display_name])
     @like = @end_user.likes
+
   end
 
   def post_likes
@@ -26,8 +33,7 @@ class Public::LikesController < ApplicationController
     @like = @end_user.likes
   end
 
-  def destroy
-  end
+
 
   private
 
