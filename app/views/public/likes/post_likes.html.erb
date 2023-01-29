@@ -13,7 +13,13 @@
 
               <% if like.table.image.attached? %> <%# 画像がある場合のレイアウト　%>
                 <div class="card-body h-200 ">
-                  <p class="card-title"> <i class="fas fa-paper-plane"></i> <%= like.table.end_user.display_name %></p>
+                  <p class="card-title">
+                  <i class="fas fa-paper-plane"></i>
+                    <% if like.table.end_user.image.attached? %>
+                      <%= image_tag like.table.end_user.image, size: "25x25" %>
+                    <% end %>
+                    <%= like.table.end_user.display_name %>
+                  </p>
 
                   <%= image_tag like.table.image, size: "171x130" %>
 
