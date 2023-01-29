@@ -2,13 +2,36 @@
   <div class="header">
     <div class="row border-bottom">
 
-      <div class="col-5">
+      <div class="col-8">
         <div class="row">
-          <% if @end_user.image.attached? %>
-            <%= image_tag @end_user.image, size: "90x90" %>
-          <% end %>
+          <div class="col-3">
+            <% if @end_user.image.attached? %>
+              <%= image_tag @end_user.image, size: "90x90" %>
+            <% end %>
+          </div>
+          <div class="col-8 ml-0">
+            <div class="row d-flex align-items-end">
+              <div class="col-12 mt-2">
+                <% if current_end_user != @end_user %>
+                  <% if current_end_user.followings.include?(@end_user) %>
+                    <%= link_to unfollow_path(@end_user.display_name), method: :delete, class: "btn btn-outline-light text-warning" do %>
+                      フォロー解除★
+                    <% end %>
+                  <% else %>
+                    <%= link_to following_path(@end_user.display_name), method: :post, class: "btn btn-outline-light text-warning" do %>
+                      フォロー☆
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
 
-          <h3 class=" d-flex align-items-end mb-0 ml-3"><strong><%= @end_user.display_name %></strong></h3>
+              <div class="col-12 mt-3">
+                <h5><strong><%= @end_user.display_name %></strong></h5>
+              </div>
+            </div>
+
+
+          </div>
         </div>
       </div>
 
@@ -34,21 +57,16 @@
         </nav>
 
       </div>
-
-      <div class="col-3  d-flex align-items-center">
-        <% if current_end_user != @end_user %>
-          <% if current_end_user.followings.include?(@end_user) %>
-            <%= link_to "フォロー解除", unfollow_path(@end_user.display_name), method: :delete %>
-          <% else %>
-            <%= link_to "フォローする", following_path(@end_user.display_name), method: :post %>
-          <% end %>
-        <% end %>
-      </div>
-
     </div>
   </div>
 
-  <div class="row mt-5">
+  <div class="row mt-5 justify-content-around ">
+    <div class="col-3 btn btn-lg bg-info text-light"><strong>投稿一覧</strong></div>
+    <div class="col-3 btn btn-lg bg-info text-light"><strong>コメント一覧</strong></div>
+    <div class="col-3 btn btn-lg bg-info text-light"><strong>リプライ一覧</strong></div>
+  </div>
+
+  <div class="row mt-2">
 
     <% @end_user.posts.each do |post| %>
       <% if post.end_user.is_deleted != true %>
@@ -62,10 +80,10 @@
             <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
 
               <div class="card-body">
-                <p class="card-title"><%= post.body %></p>
+                <p class="card-title"> <%= post.body %></p>
               </div>
-              <div class="card-body">
-                <p class="card-text"><%= post.end_user.display_name %></p>
+              <div class="card-body text-right">
+                <p class="card-text text-"><i class="fas fa-comment"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3"></i> <%= post.likes.count %></p>
               </div>
 
             <% end %>
@@ -74,10 +92,10 @@
 
             <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
               <div class="card-body h-200 ">
-                <p class="card-title"><%= post.body %></p>
+                <p class="card-title"> <%= post.body %></p>
               </div>
-              <div class="card-body">
-                <p class="card-text"><%= post.end_user.display_name %></p>
+              <div class="card-body text-right">
+                <p class="card-text text-"></i><i class="fas fa-comment"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3"></i> <%= post.likes.count %></p>
               </div>
             <% end %>
 

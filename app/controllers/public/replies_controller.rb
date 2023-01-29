@@ -13,7 +13,7 @@ class Public::RepliesController < ApplicationController
     @reply = Reply.new(reply_params)
     @reply.end_user_id = current_end_user.id
     @reply.comment_id = @comment.id
-    binding.pry
+
     @reply.save
     redirect_to comment_path(@post.end_user.display_name, @post.id, @comment.id)
   end

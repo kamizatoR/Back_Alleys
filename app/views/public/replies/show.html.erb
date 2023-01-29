@@ -6,7 +6,7 @@
               <% if @reply.end_user.image.attached? %>
                 <%= image_tag @reply.end_user.image, size: "40x40", class: "rounded-circle" %>
               <% end %>
-            <strong><%= @reply.end_user.display_name %></strong>
+            <strong><%= @reply.end_user.display_name %></strong>　<i class="fas fa-solid fa-reply"></i>
           <% end %>
           <%= link_to comment_path(@post.end_user.display_name, @post.id, @comment.id), class: "text-decoration-none text-info"  do %>
             <small class="ml-3">返信先<%= @reply.comment.end_user.display_name %></small>
@@ -22,14 +22,33 @@
   <% if end_user_signed_in? && @reply.end_user_id == current_end_user.id  %>
     <div class="col-2 pl-0">
       <ul class="list-unstyled">
-        <li>
-          <%= link_to "編集", edit_reply_path(@post.end_user.display_name, @post.id, @comment.id, @reply.id) %>
+        <li class="mb-2">
+
+          <%= link_to  edit_reply_path(@post.end_user.display_name, @post.id, @comment.id, @reply.id), class: "btn btn-outline-success" do %>
+             編集 <i class="fas fa-solid fa-pen-to-square"></i>
+          <% end %>
         </li>
         <li>
-          <%= link_to "削除", destroy_reply_path(@post.end_user.display_name, @post.id, @comment.id, @reply.id), method: :delete, "data-confirm"=> "本当に削除しますか？" %>
+          <%= link_to  destroy_reply_path(@post.end_user.display_name, @post.id, @comment.id, @reply.id), method: :delete, class: "btn btn-outline-danger", "data-confirm"=> "本当に削除しますか？" do %>
+              削除 <i class="fas fa-solid fa-trash"></i>
+          <% end %>
         </li>
       </ul>
     </div>
+  <% end %>
+
+</div>
+
+<div class="row mt-5 mb-2 border-top border-bottom justify-content-center">
+
+  <div class="col-4  pt-2">
+    ♥ <%= @reply.likes.count %>件
+  </div>
+
+  <% if current_end_user.liked_by?(@reply.id) %>
+    <%= link_to "♥", unliked_path(table_id: @reply.id), method: :delete, class: "btn btn-outline-info" %>
+  <% else %>
+    <%= render 'public/likes/like_form', table: @reply %>
   <% end %>
 
 </div>

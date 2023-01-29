@@ -16,7 +16,7 @@
             <% end %>
           </td>
           <td>
-            <%= link_to post_path(search_result.id), class: "text-decoration-none text-dark" do %>
+            <%= link_to post_path(search_result.end_user.display_name, search_result.id), class: "text-decoration-none text-dark" do %>
               <%= search_result.body %>
             <% end %>
           </td>

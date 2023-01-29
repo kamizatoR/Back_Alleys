@@ -33,7 +33,9 @@
       </div>
 
       <div class="row mb-3 justify-content-center">
-        <%= link_to "ユーザーを停止する", admin_account_suspension_path %>
+        <%= link_to admin_account_suspension_path, class: "btn btn-outline-danger" do %>
+          アカウントを停止する <i class="fas fa-solid fa-ban"></i>
+        <% end %>
       </div>
 
     <% end %>

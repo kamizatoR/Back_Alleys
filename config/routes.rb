@@ -23,13 +23,12 @@ Rails.application.routes.draw do
     patch '/:display_name/mypage' => "end_users#update", as: "update_mypage"
     get '/:display_name/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
     patch '/:display_name/withdraw' => "end_users#withdraw", as: 'withdraw'
+     #検索関連のURL
+    get '/searches' => "searches#index", as: 'search'
+    get '/searches/result' => "searches#result", as: 'search_result'
 
     #ユーザータイムラインのURL
     get '/:display_name' => "end_users#timeline", as: "timeline"
-
-    #検索関連のURL
-    get '/searches' => "searches#index", as: 'search'
-    get '/searches/result' => "searches#result", as: 'search_result'
 
     #フォロー関連のURL
     post '/:display_name/following' => "follow_followers#create", as: "following"

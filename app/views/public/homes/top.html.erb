@@ -32,12 +32,15 @@
         </div>
       <% end %>
     <% end %>
+
+    <%= paginate @posts %>
+
   </div>
 
   <div class="col-5 border-left">
     <h6 class="text-center my-1">新着投稿</h6>
     <% @posts.each do |post| %>
-      <% if post.end_user.is_deleted != true %>
+
         <div class="card my-3">
 
           <div class="card-header bg-light">
@@ -64,7 +67,6 @@
             ♡ <%= post.likes.count %>
           </div>
         </div>
-      <% end %>
     <% end %>
   </div>
 

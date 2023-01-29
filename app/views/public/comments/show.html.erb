@@ -3,10 +3,10 @@
 
       <div class="row mb-3">
           <%= link_to  timeline_path(@comment.end_user.display_name), class: "text-decoration-none text-dark" do  %>
-              <% if @comment.end_user.image.attached? %>
-                <%= image_tag @comment.end_user.image, size: "40x40", class: "rounded-circle" %>
-              <% end %>
-            <strong><%= @comment.end_user.display_name %></strong>
+            <% if @comment.end_user.image.attached? %>
+              <%= image_tag @comment.end_user.image, size: "40x40", class: "rounded-circle" %>
+            <% end %>
+            <strong><%= @comment.end_user.display_name %></strong> <i class="fas fa-comment"></i>
           <% end %>
           <%= link_to post_path(@post.end_user.display_name, @post.id), class: "text-decoration-none text-info"  do %>
             <small class="ml-3">返信先<%= @comment.post.end_user.display_name %></small>
@@ -22,11 +22,15 @@
   <% if end_user_signed_in? && @comment.end_user_id == current_end_user.id  %>
     <div class="col-2 pl-0">
       <ul class="list-unstyled">
-        <li>
-          <%= link_to "編集", edit_comment_path(@post.end_user.display_name, @post.id, @comment.id) %>
+        <li class="mb-2">
+          <%= link_to  edit_comment_path(@post.end_user.display_name, @post.id, @comment.id), class: "btn btn-outline-success" do %>
+             編集 <i class="fas fa-solid fa-pen-to-square"></i>
+          <% end %>
         </li>
         <li>
-          <%= link_to "削除", destroy_comment_path(@post.end_user.display_name, @post.id, @comment.id), method: :delete, "data-confirm"=> "本当に削除しますか？" %>
+          <%= link_to  destroy_comment_path(@post.end_user.display_name, @post.id, @comment.id), method: :delete, class: "btn btn-outline-danger", "data-confirm"=> "本当に削除しますか？" do %>
+              削除 <i class="fas fa-solid fa-trash"></i>
+          <% end %>
         </li>
       </ul>
     </div>
@@ -35,15 +39,18 @@
 </div>
 
 <div class="row mt-5 mb-2 border-top border-bottom">
-  リプライ件数　<%= @comment.replies.count %>件
+  <div class="col-5 pt-2 text-center">
+    <i class="fas fa-solid fa-reply"></i> <%= @comment.replies.count %>件
+  </div>
+  <div class="col-5  pt-2">
+    ♥ <%= @comment.likes.count %>件
+  </div>
 
   <% if current_end_user.liked_by?(@comment.id) %>
-    <%= link_to "取り消す", unliked_path(table_id: @comment.id), method: :delete %>
+    <%= link_to "♥", unliked_path(table_id: @comment.id), method: :delete, class: "btn btn-outline-info" %>
   <% else %>
     <%= render 'public/likes/like_form', table: @comment %>
   <% end %>
-  
-  いいね件数　<%= @comment.likes.count %>件
 
 </div>
 
@@ -54,12 +61,11 @@
         <%= image_tag reply.end_user.image, size: "30x30", class: "rounded-circle" %>
       <% end %>
       <span><%= reply.end_user.display_name %></span>
-      <small>返信先<%= reply.comment.end_user.display_name %></small>
     </div>
 
     <div class="col-9 offset-1">
       <%= link_to reply_path(@post.end_user.display_name, reply.comment.post_id, reply.comment.id, reply.id), class: "text-decoration-none text-dark" do %>
-        <%= reply.body %>
+        <i class="fas fa-solid fa-reply"></i> <%= reply.body %>
       <% end %>
     </div>
   </div>
