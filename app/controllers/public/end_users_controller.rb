@@ -3,6 +3,8 @@ class Public::EndUsersController < ApplicationController
 
   def timeline
    @end_user = EndUser.find_by(display_name: params[:display_name])
+   @end_uesr_post_arr = @end_user.posts
+   @end_user_posts = Kaminari.paginate_array(@end_uesr_post_arr).page(params[:page]).per(6)
   end
 
   def mypage
@@ -27,6 +29,18 @@ class Public::EndUsersController < ApplicationController
     @end_user.update(is_deleted: true)
     reset_session
     redirect_to root_path
+  end
+
+  def comments_list
+    @end_user = EndUser.find_by(display_name: params[:display_name])
+    @end_uesr_comment_arr = @end_user.comments
+    @end_user_comments = Kaminari.paginate_array(@end_uesr_comment_arr).page(params[:page]).per(6)
+  end
+
+  def replies_list
+    @end_user = EndUser.find_by(display_name: params[:display_name])
+    @end_uesr_reply_arr = @end_user.replies
+    @end_user_replies = Kaminari.paginate_array(@end_uesr_reply_arr).page(params[:page]).per(6)
   end
 
   private

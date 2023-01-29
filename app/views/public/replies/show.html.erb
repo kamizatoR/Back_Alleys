@@ -45,7 +45,7 @@
     ♥ <%= @reply.likes.count %>件
   </div>
 
-  <% if current_end_user.liked_by?(@reply.id) %>
+  <% if current_end_user.liked_by?(current_end_user.id, @reply.id) %>
     <%= link_to "♥", unliked_path(table_id: @reply.id), method: :delete, class: "btn btn-outline-info" %>
   <% else %>
     <%= render 'public/likes/like_form', table: @reply %>

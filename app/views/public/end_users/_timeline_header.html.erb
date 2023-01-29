@@ -1,0 +1,78 @@
+ <div class="header">
+    <div class="row border-bottom">
+
+      <div class="col-8">
+        <div class="row">
+          <div class="col-3">
+            <% if end_user.image.attached? %>
+              <%= image_tag end_user.image, size: "90x90" %>
+            <% end %>
+          </div>
+          <div class="col-8 ml-0">
+            <div class="row d-flex align-items-end">
+              <div class="col-12 mt-2">
+                <% if current_end_user != end_user %>
+                  <% if current_end_user.followings.include?(end_user) %>
+                    <%= link_to unfollow_path(end_user.display_name), method: :delete, class: "btn btn-outline-light text-warning" do %>
+                      フォロー解除★
+                    <% end %>
+                  <% else %>
+                    <%= link_to following_path(end_user.display_name), method: :post, class: "btn btn-outline-light text-warning" do %>
+                      フォロー☆
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+
+              <div class="col-12 mt-3">
+                <h5><strong><%= end_user.display_name %></strong></h5>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3 ml-5">
+        <nav class="nav nav-bar flex-column">
+
+          <ul class="navbar-nav">
+
+            <li class="nav-item">
+              <%= link_to "フォロワー", follower_index_path(end_user.display_name), class: "text-decoration-none text-dark" %>
+              <%= end_user.followers.count %>人
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to "フォロー", follow_index_path(end_user.display_name), class: "text-decoration-none text-dark" %>
+              <%= end_user.followings.count %>人
+            </li>
+            <li class="nav-item">
+              <%= link_to " いいね",post_likes_path(end_user.display_name), class: "text-decoration-none text-dark" %>
+              <%= end_user.likes.count %> 件
+            </li>
+          </ul>
+
+        </nav>
+
+      </div>
+    </div>
+
+    <div class="row my-2 justify-content-around ">
+        <div class="col-3 btn btn-lg bg-info">
+          <%= link_to timeline_path(end_user.display_name), class: "text-decoration-none text-light" do %>
+            <strong>投稿一覧</strong>
+          <% end %>
+        </div>
+        <div class="col-3 btn btn-lg bg-info">
+          <%= link_to comments_list_path(end_user.display_name), class: "text-decoration-none text-light" do %>
+            <strong>コメント一覧</strong>
+          <% end %>
+        </div>
+        <div class="col-3 btn btn-lg bg-info">
+          <%= link_to replies_list_path(end_user.display_name), class: "text-decoration-none text-light"  do %>
+            <strong>リプライ一覧</strong>
+          <% end %>
+        </div>
+     </div>
+  </div>

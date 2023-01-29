@@ -19,7 +19,7 @@ class EndUser < ApplicationRecord
 
   has_one_attached :image
 
-  validates :display_name, presence: true
+  validates :display_name, uniqueness: true
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -48,8 +48,8 @@ class EndUser < ApplicationRecord
     active_relationships.find_by(follower_id: end_user_id).destroy
   end
 
-  def liked_by?(id)
-    Like.where(table_id: id).present?
+  def liked_by?(id, post_id)
+    Like.where(table_id: post_id, end_user_id: id).present?
   end
 
   def post_like

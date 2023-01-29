@@ -3,7 +3,7 @@ class Public::LikesController < ApplicationController
   def create
     @like = current_end_user.likes.new(like_params)
     @like.save
-    redirect_to timeline_path(current_end_user.display_name)
+    redirect_to post_likes_path(current_end_user.display_name)
   end
 
   def destroy
@@ -12,25 +12,23 @@ class Public::LikesController < ApplicationController
     redirect_to root_path
   end
 
-  def index
-    @end_user = EndUser.find_by(display_name: params[:display_name])
-    @like = @end_user.likes
-
-  end
-
   def post_likes
     @end_user = EndUser.find_by(display_name: params[:display_name])
-    @like = @end_user.post_like
+    @likes_arr = @end_user.post_like
+    @likes = Kaminari.paginate_array(@likes_arr).page(params[:page]).per(6)
+
   end
 
   def comment_likes
     @end_user = EndUser.find_by(display_name: params[:display_name])
-    @like = @end_user.comment_like
+    @likes_arr = @end_user.comment_like
+    @likes = Kaminari.paginate_array(@likes_arr).page(params[:page]).per(6)
   end
 
   def reply_likes
     @end_user = EndUser.find_by(display_name: params[:display_name])
-    @like = @end_user.likes
+    @likes_arr = @end_user.reply_like
+    @likes = Kaminari.paginate_array(@likes_arr).page(params[:page]).per(6)
   end
 
 

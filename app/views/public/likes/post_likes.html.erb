@@ -1,6 +1,53 @@
-<% @like.each do |like| %>
+<div class="container">
+  <%= render 'likes_header', end_user: @end_user %>
 
-  <%= like.table.body %>
-  <%= like.table_type %>
+  <div class="row mt-2">
 
-<% end %>
+    <% @likes.each do |like| %>
+      <% if like.end_user.is_deleted != true %>
+
+        <div class="col-4 h75">
+          <div class="card my-3 vh75">
+
+            <%= link_to post_path(like.end_user.display_name, like.table.id), class: "text-decoration-none text-dark"  do %>
+
+              <% if like.table.image.attached? %> <%# 画像がある場合のレイアウト　%>
+                <div class="card-body h-200 ">
+                  <p class="card-title"> <i class="fas fa-paper-plane"></i> <%= like.table.end_user.display_name %></p>
+
+                  <%= image_tag like.table.image, size: "171x130" %>
+
+                  <p class="card-title"> <%= truncate(like.table.body, length: 20) %></p>
+                </div>
+                <div class="card-body text-right">
+                  <p class="card-text text-"> <i class="fas fa-solid fa-heart ml-3"></i> <%= like.table.likes.count %></p>
+                </div>
+
+              <% else %>
+
+                <div class="card-body h-200 ">
+                  <p class="card-title"><i class="fas fa-paper-plane"></i> <%= like.table.end_user.display_name %></p>
+
+                  <p class="card-title"> <%= truncate(like.table.body, length: 70) %></p>
+                </div>
+                <div class="card-body text-right">
+                  <p class="card-text text-"> <i class="fas fa-solid fa-heart ml-3"></i> <%= like.table.likes.count %></p>
+                </div>
+              <% end %>
+
+            <% end %>
+
+
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+
+  </div>
+
+  <div class="row mt-5 d-flex justify-content-center">
+    <%= paginate @likes %>
+  </div>
+</div>
+

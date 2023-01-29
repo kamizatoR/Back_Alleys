@@ -5,29 +5,31 @@
 
     <% @likes.each do |like| %>
       <% if like.end_user.is_deleted != true %>
+
         <div class="col-4 h75">
           <div class="card my-3 vh75">
 
-            <%= link_to comment_path(like.end_user.display_name,like.table.post_id, like.table.id), class: "text-decoration-none text-dark"  do %>
+            <%= link_to reply_path(like.end_user.display_name, like.table.comment.post_id, like.table.comment_id, like.table.id), class: "text-decoration-none text-dark"  do %>
               <div class="card-body h-200 ">
-                <p class="card-title"><i class="fas fa-comment"></i> <%= like.table.end_user.display_name %></p>
+                <p class="card-title"><i class="fas fa-solid fa-reply"></i> <%= like.table.end_user.display_name %></p>
                 <p class="card-title"> <%= truncate(like.table.body, length: 70) %></p>
               </div>
               <div class="card-body text-right">
-               <p class="card-text text-"> <i class="fas fa-solid fa-heart ml-3"></i> <%= like.table.likes.count %></p>
+                <p class="card-text text-"> <i class="fas fa-solid fa-heart ml-3"></i> <%= like.table.likes.count %></p>
               </div>
             <% end %>
 
           </div>
         </div>
+
       <% end %>
 
     <% end %>
 
   </div>
 
-   <div class="row mt-5 d-flex justify-content-center">
+  <div class="row mt-5 d-flex justify-content-center">
     <%= paginate @likes %>
   </div>
 
-</div>
+ </div>
