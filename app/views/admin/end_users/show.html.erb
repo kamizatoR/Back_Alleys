@@ -33,8 +33,10 @@
       </div>
 
       <div class="row mb-3 justify-content-center">
-        <%= link_to admin_account_suspension_path, class: "btn btn-outline-danger" do %>
-          アカウントを停止する <i class="fas fa-solid fa-ban"></i>
+        <% if @end_user.is_deleted != true %>
+          <%= link_to admin_account_suspension_path, class: "btn btn-outline-danger" do %>
+            アカウントを停止する <i class="fas fa-solid fa-ban"></i>
+          <% end %>
         <% end %>
       </div>
 

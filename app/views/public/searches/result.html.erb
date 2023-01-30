@@ -7,9 +7,7 @@
       <% if search_result.end_user.is_deleted != true %>
         <tr>
           <td>
-            <% if search_result.end_user.image.attached? %>
-              <%= image_tag search_result.end_user.image, size: "25x25" %>
-            <% end %>
+            <%= image_tag search_result.end_user.get_image, size: "25x25" %>
 
             <%= link_to timeline_path(search_result.end_user.display_name), class: "text-decoration-none text-dark" do %>
               <%= search_result.end_user.display_name %>
@@ -34,14 +32,13 @@
       <% if search_result.is_deleted != true && search_result.not_display_guest %>
         <tr>
           <td>
-            <% if search_result.image.attached? %>
-              <%= image_tag search_result.image, size: "25x25" %>
-            <% end %>
+
+            <%= image_tag search_result.get_image, size: "25x25" %>
 
             <%= link_to timeline_path(search_result.display_name), class: "text-decoration-none text-dark" do %>
-
               <%= search_result.display_name %>
             <% end %>
+
           </td>
         </tr>
       <% end %>
@@ -49,3 +46,7 @@
 
   <% end %>
 </table>
+
+<div class="row mt-5 d-flex justify-content-center">
+  <%= paginate @search_results %>
+</div>

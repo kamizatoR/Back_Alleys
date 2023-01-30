@@ -1,5 +1,5 @@
 class Public::EndUsersController < ApplicationController
-  before_action :authenticate_end_user!
+   before_action :authenticate_any!
 
   def timeline
    @end_user = EndUser.find_by(display_name: params[:display_name])

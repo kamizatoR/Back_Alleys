@@ -4,14 +4,12 @@
       <div class="col-8">
         <div class="row">
           <div class="col-3">
-            <% if end_user.image.attached? %>
-              <%= image_tag end_user.image, size: "90x90" %>
-            <% end %>
+            <%= image_tag end_user.get_image, size: "90x90" %>
           </div>
           <div class="col-8 ml-0">
             <div class="row d-flex align-items-end">
               <div class="col-12 mt-2">
-                <% if current_end_user != end_user %>
+                <% if end_user_signed_in? && current_end_user != end_user %>
                   <% if current_end_user.followings.include?(end_user) %>
                     <%= link_to unfollow_path(end_user.display_name), method: :delete, class: "btn btn-outline-light text-warning" do %>
                       フォロー解除★

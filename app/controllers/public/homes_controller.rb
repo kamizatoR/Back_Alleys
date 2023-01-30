@@ -14,8 +14,10 @@ class Public::HomesController < ApplicationController
   def new_arrival
     @posts_arr = []
     Post.all.each do |post|
+      #退会しているユーザーを除く記述
       @posts_arr << post if post.end_user.is_deleted == false
     end
+    #退会していないユーザーのみ取得
     @posts = Kaminari.paginate_array(@posts_arr).page(params[:page]).per(6)
 
   end

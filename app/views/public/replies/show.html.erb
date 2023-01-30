@@ -3,9 +3,7 @@
 
       <div class="row mb-3">
           <%= link_to  timeline_path(@reply.end_user.display_name), class: "text-decoration-none text-dark" do  %>
-              <% if @reply.end_user.image.attached? %>
-                <%= image_tag @reply.end_user.image, size: "40x40", class: "rounded-circle" %>
-              <% end %>
+            <%= image_tag @reply.end_user.get_image, size: "40x40", class: "rounded-circle" %>
             <strong><%= @reply.end_user.display_name %></strong>　<i class="fas fa-solid fa-reply"></i>
           <% end %>
           <%= link_to comment_path(@post.end_user.display_name, @post.id, @comment.id), class: "text-decoration-none text-info"  do %>

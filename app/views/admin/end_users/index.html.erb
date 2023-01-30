@@ -13,9 +13,7 @@
           <tr>
             <td>No.<%= suspended_end_user.id %></td>
             <td>
-              <% if suspended_end_user.image.attached? %>
-                <%= image_tag suspended_end_user.image, size: "25x25", class: "rounded-circle" %>
-              <% end %>
+              <%= image_tag suspended_end_user.get_image, size: "25x25", class: "rounded-circle" %>
               <%= link_to admin_end_user_path(suspended_end_user.id), class: "text-decoration-none text-dark" do %>
                 <%= suspended_end_user.display_name %>
               <% end %>
@@ -30,4 +28,10 @@
 
     </table>
 
+
+
+</div>
+
+<div class="row mt-3 d-flex justify-content-center">
+  <%= paginate @suspended_end_users %>
 </div>

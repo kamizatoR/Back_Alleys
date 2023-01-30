@@ -13,9 +13,7 @@
       <tr>
         <td>
           <%= link_to timeline_path(follower.display_name), class: "text-decoration-none text-dark" do %>
-            <% if follower.image.attached? %>
-                <%= image_tag follower.image, size: "25x25" %>
-            <% end %>
+            <%= image_tag follower.get_image, size: "25x25" %>
             <%= follower.display_name %>
           <% end %>
         </td>

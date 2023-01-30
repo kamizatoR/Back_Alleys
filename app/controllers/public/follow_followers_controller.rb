@@ -1,4 +1,5 @@
 class Public::FollowFollowersController < ApplicationController
+   before_action :authenticate_any!
 
   def create
     @end_user = EndUser.find_by(display_name: params[:display_name])

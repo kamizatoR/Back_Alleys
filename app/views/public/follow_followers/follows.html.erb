@@ -1,6 +1,6 @@
 
 <div class="row mt-5">
-  
+
   <div class="col text-center">
     <% if current_end_user == @end_user %>
       <h4>マイフォローリスト</h4>
@@ -8,20 +8,18 @@
       <h4><%= @end_user.display_name %>さんのフォローリスト</h4>
     <% end %>
   </div>
-  
+
   <table class="table">
     <% @end_user_follows.each do |follow| %>
       <tr>
         <td>
           <%= link_to timeline_path(follow.display_name), class: "text-decoration-none text-dark" do %>
-            <% if follow.image.attached? %>
-                <%= image_tag follow.image, size: "25x25" %>
-            <% end %>
+            <%= image_tag follow.get_image, size: "25x25" %>
             <%= follow.display_name %>
           <% end %>
         </td>
       </tr>
     <% end %>
   </table>
-  
+
 </div>

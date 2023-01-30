@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_any!
+    if admin_signed_in?
+        true
+    else
+        authenticate_end_user!
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

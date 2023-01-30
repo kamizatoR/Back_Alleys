@@ -52,16 +52,25 @@ class EndUser < ApplicationRecord
     Like.where(table_id: post_id, end_user_id: id).present?
   end
 
-  def post_like
-    Like.where(table_type: "Post")
+  def post_like(id)
+    Like.where(table_type: "Post", end_user_id: id)
   end
 
-  def comment_like
-    Like.where(table_type: "Comment")
+  def comment_like(id)
+    Like.where(table_type: "Comment", end_user_id: id)
   end
 
-  def reply_like
-    Like.where(table_type: "Reply")
+  def reply_like(id)
+    Like.where(table_type: "Reply", end_user_id: id)
+  end
+
+
+  def get_image
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no_profile_image.jpg')
+      image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpeg')
+    end
+    image
   end
 
 end

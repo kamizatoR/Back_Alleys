@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_end_user!
+   before_action :authenticate_any!
 
   def show
     @post = Post.find(params[:post_id])

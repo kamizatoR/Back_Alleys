@@ -6,9 +6,4 @@ class Like < ApplicationRecord
     self.where(end_user: end_user)
   end
 
-  def liked_count
-    likes.count
-  end
-
-
 end

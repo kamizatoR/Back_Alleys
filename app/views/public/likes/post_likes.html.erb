@@ -14,10 +14,9 @@
               <% if like.table.image.attached? %> <%# 画像がある場合のレイアウト　%>
                 <div class="card-body h-200 ">
                   <p class="card-title">
-                  <i class="fas fa-paper-plane"></i>
-                    <% if like.table.end_user.image.attached? %>
-                      <%= image_tag like.table.end_user.image, size: "25x25" %>
-                    <% end %>
+                    <i class="fas fa-paper-plane"></i>
+
+                    <%= image_tag like.table.end_user.get_image, size: "25x25" %>
                     <%= like.table.end_user.display_name %>
                   </p>
 
@@ -32,7 +31,11 @@
               <% else %>
 
                 <div class="card-body h-200 ">
-                  <p class="card-title"><i class="fas fa-paper-plane"></i> <%= like.table.end_user.display_name %></p>
+                  <p class="card-title">
+                    <i class="fas fa-paper-plane"></i>
+                    <%= image_tag like.table.end_user.get_image, size: "25x25" %>
+                    <%= like.table.end_user.display_name %>
+                  </p>
 
                   <p class="card-title"> <%= truncate(like.table.body, length: 70) %></p>
                 </div>

@@ -19,8 +19,10 @@
         </div>
 
         <div class="col-4 border-left">
-          <div class="row mt-4 mb-3 mx-4 d-flex justify-content-center border">
-            <h3><strong class="text-success">P</strong><small>ets</small><i class="fas fa-solid fa-paw text-warning"></i></h3>
+          <div class="row mt-4 mb-3 mx-4 d-flex justify-content-center border bg-dark">
+            <%= link_to  root_path, class: 'text-decoration-none text-light' do %>
+              <h3><strong class="text-success">P</strong><small>ets</small> <i class="fas fa-solid fa-paw text-warning"></i></h3>
+            <% end %>
 
           </div>
           <nav class="nav nav-bar flex-column">
@@ -58,7 +60,7 @@
 
                 <li class="nav-item my-3">
                   <%= link_to  mypage_path(current_end_user.display_name), class: "text-decoration-none text-dark" do  %>
-                    <% if current_end_user.image.attached? %>
+                    <% if current_end_user.get_image%>
                       <%= image_tag current_end_user.image, size: "40x40", class: "rounded" %>
                     <% end %>
 
@@ -85,7 +87,7 @@
                   <i class="fas fa-solid fa-gear"></i>
                   <i class="fas fa-solid fa-user-minus"></i>
                   <i class="fas fa-solid fa-pen-to-square"></i>
-                  
+
 
 
                 </li>

@@ -1,5 +1,6 @@
 class Public::LikesController < ApplicationController
-
+   before_action :authenticate_any!
+   
   def create
     @like = current_end_user.likes.new(like_params)
     @like.save
@@ -14,20 +15,20 @@ class Public::LikesController < ApplicationController
 
   def post_likes
     @end_user = EndUser.find_by(display_name: params[:display_name])
-    @likes_arr = @end_user.post_like
+    @likes_arr = @end_user.post_like(@end_user.id)
     @likes = Kaminari.paginate_array(@likes_arr).page(params[:page]).per(6)
 
   end
 
   def comment_likes
     @end_user = EndUser.find_by(display_name: params[:display_name])
-    @likes_arr = @end_user.comment_like
+    @likes_arr = @end_user.comment_like(@end_user.id)
     @likes = Kaminari.paginate_array(@likes_arr).page(params[:page]).per(6)
   end
 
   def reply_likes
     @end_user = EndUser.find_by(display_name: params[:display_name])
-    @likes_arr = @end_user.reply_like
+    @likes_arr = @end_user.reply_like(@end_user.id)
     @likes = Kaminari.paginate_array(@likes_arr).page(params[:page]).per(6)
   end
 

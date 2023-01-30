@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_end_user! || :authenticate_admin!
+  before_action :authenticate_any!
 
   def show
     @post = Post.find(params[:id])
