@@ -1,0 +1,28 @@
+ja:
+  activerecord:
+    attributes:
+      end_user:
+        display_name: 表示名
+        first_name: 姓
+        last_name: 名
+        first_kana: セイ
+        last_kana: メイ
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+      post:
+        body: 本文
+      comment:
+        body: コメント文
+      reply:
+        body: リプライ文
+    errors:
+      models:
+        user:
+          blank: が未入力です
+        post:
+          blank: が未入力です
+        comment:
+          blank: が未入力です
+        reply:
+          blank: が未入力です

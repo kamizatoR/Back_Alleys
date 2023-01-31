@@ -5,6 +5,8 @@ class Post < ApplicationRecord
 
   has_one_attached :image
 
+  validates :body, presence: true
+
   def end_user_deleted?(resource)
     self.end_user.is_deleted != ture
   end

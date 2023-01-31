@@ -13,8 +13,12 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.end_user_id = current_end_user.id
-    @post.save
-    redirect_to post_path(current_end_user.display_name, @post.id)
+    if @post.save
+     redirect_to post_path(current_end_user.display_name, @post.id)
+    else
+
+      render :new
+    end
   end
 
   def edit
@@ -23,8 +27,11 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path(current_end_user.display_name,@post.id)
+    if @post.update(post_params)
+      redirect_to post_path(current_end_user.display_name, @post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy

@@ -6,7 +6,7 @@
             <%= image_tag @reply.end_user.get_image, size: "40x40", class: "rounded-circle" %>
             <strong><%= @reply.end_user.display_name %></strong>　<i class="fas fa-solid fa-reply"></i>
           <% end %>
-          <%= link_to comment_path(@post.end_user.display_name, @post.id, @comment.id), class: "text-decoration-none text-info"  do %>
+          <%= link_to comment_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment.id), class: "text-decoration-none text-info"  do %>
             <small class="ml-3">返信先<%= @reply.comment.end_user.display_name %></small>
           <% end %>
       </div>
@@ -22,12 +22,12 @@
       <ul class="list-unstyled">
         <li class="mb-2">
 
-          <%= link_to  edit_reply_path(@post.end_user.display_name, @post.id, @comment.id, @reply.id), class: "btn btn-outline-success" do %>
+          <%= link_to  edit_reply_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment_id, @reply.id), class: "btn btn-outline-success" do %>
              編集 <i class="fas fa-solid fa-pen-to-square"></i>
           <% end %>
         </li>
         <li>
-          <%= link_to  destroy_reply_path(@post.end_user.display_name, @post.id, @comment.id, @reply.id), method: :delete, class: "btn btn-outline-danger", "data-confirm"=> "本当に削除しますか？" do %>
+          <%= link_to  destroy_reply_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment_id, @reply.id), method: :delete, class: "btn btn-outline-danger", "data-confirm"=> "本当に削除しますか？" do %>
               削除 <i class="fas fa-solid fa-trash"></i>
           <% end %>
         </li>

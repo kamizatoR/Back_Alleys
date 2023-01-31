@@ -1,0 +1,14 @@
+<div class="row justify-content-center">
+  <% if model.errors.any? %>
+
+    <div class="col-12 text-center mt-3">
+      <h2><%= model.errors.count %> 件の<strong class="text-danger">エラー</strong>が発生しました</h2>
+    </div>
+
+    <ul class="list-unstyled">
+      <% model.errors.full_messages.each do |message| %>
+        <li class="text-danger my-1"><strong><%= message %></strong></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

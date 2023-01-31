@@ -2,42 +2,37 @@ class Public::RepliesController < ApplicationController
    before_action :authenticate_any!
 
   def show
-    @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:comment_id])
     @reply = Reply.find(params[:id])
   end
 
   def create
-    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:comment_id])
-    @reply = Reply.new(reply_params)
-    @reply.end_user_id = current_end_user.id
+    @reply = current_end_user.replies.new(reply_params)
     @reply.comment_id = @comment.id
-
-    @reply.save
-    redirect_to comment_path(@post.end_user.display_name, @post.id, @comment.id)
+    if @reply.save
+      redirect_to comment_path(@comment.post.end_user.display_name, @comment.post_id, @comment.id)
+    else
+      render template: "public/comments/show"
+    end
   end
 
   def edit
-    @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:comment_id])
     @reply = Reply.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:comment_id])
     @reply = Reply.find(params[:id])
-    @reply.update(reply_params)
-    redirect_to reply_path(@post.end_user.display_name, @post.id, @comment.id, @reply.id)
+    if @reply.update(reply_params)
+      redirect_to reply_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment_id, @reply.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:comment_id])
     @reply = Reply.find(params[:id])
     @reply.destroy
-    redirect_to comment_path(@post.end_user.display_name, @post.id, @comment.id)
+    redirect_to comment_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment_id)
 
   end
 
