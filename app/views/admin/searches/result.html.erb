@@ -1,4 +1,4 @@
-<%= render 'search' %>
+<%= render 'admin_search' %>
 
 <table class="table">
   <% if @range == "投稿" %>
@@ -9,7 +9,7 @@
           <td class="font-03 overflow-hidden" >
             <%= image_tag search_result.end_user.get_image, size: "25x25", class: "img-15" %>
 
-            <%= link_to timeline_path(search_result.end_user.display_name), class: "text-decoration-none text-dark" do %>
+            <%= link_to admin_end_user_path(search_result.end_user.id), class: "text-decoration-none text-dark" do %>
               <%= search_result.end_user.display_name %>
             <% end %>
           </td>
@@ -39,7 +39,7 @@
 
             <%= image_tag search_result.get_image, size: "25x25", class: "img-15"  %>
 
-            <%= link_to timeline_path(search_result.display_name), class: "text-decoration-none text-dark" do %>
+            <%= link_to admin_end_user_path(search_result.id), class: "text-decoration-none text-dark" do %>
               <%= search_result.display_name %>
             <% end %>
 

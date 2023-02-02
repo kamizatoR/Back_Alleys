@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>Pets</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,54 +15,55 @@
     <div class="container">
       <div class="row d-flex my-2">
 
-        <div class="col-8 mainbar">
+        <div class="col-8 col-md-8">
           <%= yield %>
         </div>
 
-        <div class="col-4 border-left">
-          <div class="row mt-4 mb-3 mx-4 d-flex justify-content-center border bg-dark">
+        <div class="col-4 col-md-4 border-left">
+
+          <div class="row mx-1 mt-md-4 mb-md-3 mx-md-4 d-flex justify-content-center border bg-dark">
             <%= link_to  root_path, class: 'text-decoration-none text-light' do %>
               <h3><strong class="text-success">P</strong><small>ets</small> <i class="fas fa-solid fa-paw text-warning"></i></h3>
             <% end %>
-
           </div>
-          <nav class="nav nav-bar flex-column">
+
+          <nav class="nav nav-bar flex-column ">
 
             <% if end_user_signed_in? %>
 
-              <ul class="navbar-nav mx-5 mt-4">
-                <li class="nav-item my-2">
-                  <%= link_to  root_path, class: 'btn btn-outline-dark nav-link' do %>
+              <ul class="navbar-nav mr-4 mx-md-5 mt-md-4">
+                <li class="nav-item my-2 " >
+                  <%= link_to  root_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     投稿一覧 <i class="fas fa-solid fa-paw"></i>
                   <% end %>
                 </li>
 
-                <li class="nav-item my-2">
-                  <%= link_to  search_path, class: 'btn btn-outline-dark nav-link' do %>
+                <li class="nav-item my-md-2">
+                  <%= link_to  search_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     検索 <i class="fas fa-solid fa-magnifying-glass"></i>
                   <% end %>
                 </li>
 
                 <li class="nav-item my-2">
-                  <%= link_to "タイムライン", timeline_path(current_end_user.display_name), class: 'btn btn-outline-dark nav-link' %>
+                  <%= link_to "タイムライン", timeline_path(current_end_user.display_name), class: 'btn btn-outline-dark nav-link btn-small' %>
                 </li>
 
-                <li class="nav-item my-2">
-                  <%= link_to  destroy_end_user_session_path, class: 'btn btn-outline-dark nav-link', method: :delete do %>
+                <li class="nav-item my-md-2">
+                  <%= link_to  destroy_end_user_session_path, class: 'btn btn-outline-dark nav-link btn-small', method: :delete do %>
                     ログアウト  <i class="fas fa-solid fa-door-open"></i>
                   <% end %>
                 </li>
 
-                <li class="nav-item  mt-5">
-                  <%= link_to  new_post_path(current_end_user.display_name), class: 'btn btn-outline-dark nav-link' do %>
+                <li class="nav-item mt-md-5 mt-4">
+                  <%= link_to  new_post_path(current_end_user.display_name), class: 'btn btn-outline-dark nav-link btn-small' do %>
                     投稿  <i class="fas fa-paper-plane"></i>
                   <% end %>
                 </li>
 
-                <li class="nav-item my-3">
+                <li class="nav-item my-3 ellipsis">
                   <%= link_to  mypage_path(current_end_user.display_name), class: "text-decoration-none text-dark" do  %>
                     <% if current_end_user.get_image%>
-                      <%= image_tag current_end_user.image, size: "40x40", class: "rounded" %>
+                      <%= image_tag current_end_user.image, size: "40x40", class: "rounded img-30-30" %>
                     <% end %>
 
                     <strong><%= current_end_user.display_name %></strong>
@@ -90,53 +92,56 @@
 
 
 
+
                 </li>
               </ul>
 
             <% elsif admin_signed_in? %>
 
               <ul class="navbar-nav">
-                <li class="nav-item my-2">
-                  <%= link_to  root_path, class: 'btn btn-outline-dark nav-link' do %>
+                <li class="nav-item mt-2 my-md-2">
+                  <%= link_to  root_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     投稿一覧 <i class="fas fa-solid fa-paw"></i>
                   <% end %>
                 </li>
                 <li class="nav-item my-2">
-                  <%= link_to  search_path, class: 'btn btn-outline-dark nav-link' do %>
+                  <%= link_to  admin_search_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     検索 <i class="fas fa-solid fa-magnifying-glass"></i>
                   <% end %>
                 </li>
-                <li class="nav-item my-2">
-                  <%= link_to admin_end_users_path, class: 'btn btn-outline-dark nav-link' do %>
+                <li class="nav-item my-md-2">
+                  <%= link_to admin_end_users_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     停止ユーザー <i class="fas fa-solid fa-user-xmark"></i>
                   <% end %>
                 </li>
                 <li class="nav-item my-2">
-                  <%= link_to "ログアウト", destroy_end_user_session_path, class: 'btn btn-outline-dark nav-link', method: :delete %>
+                  <%= link_to "ログアウト", destroy_end_user_session_path, class: 'btn btn-outline-dark nav-link btn-small', method: :delete %>
                 </li>
               </ul>
 
             <% else %>
 
+
               <ul class="navbar-nav">
-                <li class="nav-item my-2">
-                  <%= link_to  root_path, class: 'btn btn-outline-dark nav-link' do %>
+                <li class="nav-item mt-2 my-md-2">
+                  <%= link_to  root_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     投稿一覧 <i class="fas fa-solid fa-paw"></i>
                   <% end %>
                 </li>
 
-                <li class="nav-item my-2">
-                  <%= link_to new_end_user_session_path, class: 'btn btn-outline-dark nav-link' do %>
+                <li class="nav-item my-2 ">
+                  <%= link_to new_end_user_session_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     ログイン <i class="fas fa-solid fa-right-to-bracket"></i>
                   <% end %>
                 </li>
 
-                <li class="nav-item my-2">
-                  <%= link_to new_end_user_registration_path, class: 'btn btn-outline-dark nav-link' do %>
+                <li class="nav-item my-md-2">
+                  <%= link_to new_end_user_registration_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     新規登録 <i class="fas fa-solid fa-user-plus"></i>
                   <% end %>
                 </li>
               </ul>
+
             <% end %>
 
           </nav>

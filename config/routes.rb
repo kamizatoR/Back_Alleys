@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     patch '/:display_name/mypage' => "end_users#update", as: "update_mypage"
     get '/:display_name/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
     patch '/:display_name/withdraw' => "end_users#withdraw", as: 'withdraw'
+    
      #検索関連のURL
     get '/searches' => "searches#index", as: 'search'
     get '/searches/result' => "searches#result", as: 'search_result'
@@ -73,7 +74,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/end_users/:id/account_suspension' => "end_users#account_suspension", as: 'account_suspension'
     patch '/end_users/:id' => "end_users#suspended", as: 'suspended'
+    
     resources :end_users, only: [:index, :show]
+    
+    get '/searches' => "searches#index", as: 'search'
+    get '/searches/result' => "searches#result", as: 'search_result'
 
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
