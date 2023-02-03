@@ -13,7 +13,7 @@ class Public::HomesController < ApplicationController
 
   def new_arrival
     @posts_arr = []
-    Post.all.each do |post|
+    Post.all.order(created_at: :desc).each do |post|
       #退会しているユーザーを除く記述
       @posts_arr << post if post.end_user.is_deleted == false
     end

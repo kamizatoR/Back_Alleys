@@ -52,8 +52,8 @@ class EndUser < ApplicationRecord
     active_relationships.find_by(follower_id: end_user_id).destroy
   end
 
-  def liked_by?(id, post_id)
-    Like.where(table_id: post_id, end_user_id: id).present?
+  def liked_by?(user_id, id)
+    Like.where(table_id: id, end_user_id: user_id).present?
   end
 
   def post_like(id)

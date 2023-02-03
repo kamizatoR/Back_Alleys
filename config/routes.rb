@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    delete 'likes/:id' => "likes#destroy", as: "unliked"
-    
+
+
     get 'new_arrival_post' => "homes#new_arrival", as: "new_arrival"
 
     #ユーザー情報関連のURL
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     patch '/:display_name/mypage' => "end_users#update", as: "update_mypage"
     get '/:display_name/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
     patch '/:display_name/withdraw' => "end_users#withdraw", as: 'withdraw'
-    
+
      #検索関連のURL
     get '/searches' => "searches#index", as: 'search'
     get '/searches/result' => "searches#result", as: 'search_result'
@@ -64,19 +64,20 @@ Rails.application.routes.draw do
     delete '/:display_name/:post_id/:comment_id/replies/:id' => "replies#destroy", as: "destroy_reply"
 
     #いいね関連のURL
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:create]
     get ':display_name/post_likes' => "likes#post_likes", as: "post_likes"
     get ':display_name/comment_likes' => "likes#comment_likes", as: "comment_likes"
     get ':display_name/reply_likes' => "likes#reply_likes", as: "reply_likes"
+    get 'likes/:id' => "likes#destroy", as: "unliked"
 
   end
 
   namespace :admin do
     get '/end_users/:id/account_suspension' => "end_users#account_suspension", as: 'account_suspension'
     patch '/end_users/:id' => "end_users#suspended", as: 'suspended'
-    
+
     resources :end_users, only: [:index, :show]
-    
+
     get '/searches' => "searches#index", as: 'search'
     get '/searches/result' => "searches#result", as: 'search_result'
 

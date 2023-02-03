@@ -3,14 +3,15 @@ class Public::LikesController < ApplicationController
 
   def create
     @like = current_end_user.likes.find_or_create_by(like_params)
+
     @like.save
     redirect_to post_likes_path(current_end_user.display_name)
   end
 
   def destroy
-      @like = current_end_user.likes.where(table_id: params[:table_id]).first
-      @like.destroy
-      redirect_to post_likes_path(current_end_user.display_name)
+    @like = current_end_user.likes.where(table_id: params[:table_id]).first
+    @like.destroy
+    redirect_to post_likes_path(current_end_user.display_name)
   end
 
   def post_likes

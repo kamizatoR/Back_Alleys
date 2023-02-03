@@ -1,39 +1,39 @@
 <h1 class="text-center my-4">情報編集</h1>
 
-  <div class="container mt-5">
+  <div class="container mt-md-5">
     <%= form_with model: @end_user, url: update_mypage_path(@end_user.display_name) do |f| %>
 
-      <div class="row mx-4 mb-3 px-5 ">
-        <p class="mr-2">プロフィール画像</p>
+      <div class="row mx-md-4 mb-md-3 px-md-5 ">
+        <p class="mr-md-2">プロフィール画像</p>
         <%= f.file_field :image, accept: "image/*" %>
       </div>
 
-      <div class="row mx-4 mb-3 px-5 ">
-        <%= f.label  "表示名", class: "col-form-label col-3"  %>
-        <%= f.text_field :display_name, autofocus: true, class: " ml-3 col-4 form-control"  %>
+      <div class="row mx-md-4 mb-md-3 px-md-5 ">
+        <%= f.label  "表示名", class: "col-form-label col-md-3"  %>
+        <%= f.text_field :display_name, autofocus: true, class: " ml-md-3 col-md-4 form-control"  %>
       </div>
 
-      <div class="row mx-3 mb-3 px-5 justify-content-around ">
-        <%= f.label  "名前", class: "col-form-label col-3"  %>
-        <%= f.text_field :first_name, placeholder: "性", class: " form-control col-4 "  %>
-        <%= f.text_field :last_name, placeholder: "名", class: " form-control col-4"  %>
+      <div class="row mx-md-3 mb-md-3 px-md-5 justify-content-around ">
+        <%= f.label  "名前", class: "col-form-label col-md-3"  %>
+        <%= f.text_field :first_name, placeholder: "性", class: " form-control col-md-4 "  %>
+        <%= f.text_field :last_name, placeholder: "名", class: " form-control col-md-4 mt-2 mt-md-0"  %>
       </div>
 
-      <div class="row mx-3 mb-3 px-5 justify-content-around ">
-        <%= f.label  "フリガナ", class: "col-form-label col-3" %>
-        <%= f.text_field :first_kana, placeholder: "セイ", class: "form-control col-4"  %>
-        <%= f.text_field :last_kana, placeholder: "メイ", class: "form-control col-4" %>
+      <div class="row mx-md-3 mb-md-3 px-md-5 justify-content-around ">
+        <%= f.label  "フリガナ", class: "col-form-label col-md-3" %>
+        <%= f.text_field :first_kana, placeholder: "セイ", class: "form-control col-md-4"  %>
+        <%= f.text_field :last_kana, placeholder: "メイ", class: "form-control col-md-4 mt-2 mt-md-0" %>
       </div>
 
-      <div class="row mx-3 mb-3 px-5 justify-content-around ">
-        <%= f.label  "メールアドレス", class: "col-form-label col-3" %>
-        <%= f.email_field :email, placeholder: "sample@example.com", autocomplete: "email", class: "form-control col-8 mr-3" %>
+      <div class="row mx-md-3 mb-md-3 px-md-5 justify-content-around ">
+        <%= f.label  "メールアドレス", class: "col-form-label col-md-3" %>
+        <%= f.email_field :email, placeholder: "sample@example.com", autocomplete: "email", class: "form-control col-md-8 mr-md-3" %>
       </div>
 
-      <div class="row mx-3 mt-5 mb-0 px-5 justify-content-around ">
-        <%= f.submit "編集内容を保存", class: "btn btn-outline-success col-4" %>
+      <div class="row mx-md-3 mt-3 mt-md-5 mb-md-0 px-md-5 justify-content-around ">
+        <%= f.submit "編集内容を保存", class: "btn btn-outline-success col-md-4 col-5 btn-small " %>
 
-        <%= link_to unsubscribe_path(@end_user.display_name), class: "btn btn-outline-danger col-4" do %>
+        <%= link_to unsubscribe_path(@end_user.display_name), class: "btn btn-outline-danger col-md-4 col-5 btn-small" do %>
           退会する <i class="fa-solid fa-user-minus"></i>
         <% end %>
       </div>

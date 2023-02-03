@@ -10,6 +10,10 @@
   display:  contents;
 }
 
+.item-height{
+  height: 600px;
+}
+
 /*-------------*/
 @media screen and (max-width:769px) {
   .btn-small {
@@ -73,9 +77,18 @@
     font-size:0.7rem;
   }
 
+  .font-05{
+    font-size:0.5rem;
+  }
+
   .img-15{
     height: 17px;
     width: 17px;
+  }
+
+  .img-50-30{
+    height: 19px;
+    width: 50px;
   }
 
   .img-50-30{
@@ -93,5 +106,49 @@
     font-size: 0.8rem;
   }
 
+  .font-13{
+    font-size: 1.3rem;
+  }
+
+  .item-height{
+    height: 300px;
+  }
+
+  .img-25{
+    width: 25px;
+    height: 25px;
+  }
+
+  .img-17{
+    width: 17px;
+    height: 17px;
+  }
+
+  .post-sm-img{
+    width: 150px;
+    height: 100px;
+  }
+
+  .position-sm{
+    position:relative;
+  }
+
+  .sm-list{
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+  }
+
+
+
+}
+
+@media screen and (max-width:540px) {
+  
+  .sm-name-0{
+    margin-left:0;
+  }
+  
 }
 
