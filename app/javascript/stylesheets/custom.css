@@ -140,14 +140,12 @@
     right: 0;
   }
 
-
-
 }
 
-@media screen and (max-width:540px) {
+@media screen and (max-width: 425px) {
   
-  .sm-name-0{
-    margin-left:0;
+  .comment-sm-name {
+    display: block;
   }
   
 }

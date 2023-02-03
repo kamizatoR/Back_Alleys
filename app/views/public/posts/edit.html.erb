@@ -1,7 +1,7 @@
 <%= render 'public/errors/error_display', model: @post %>
 
-<div class="row mt-md-5 position-sm">
-  
+<div class="row mt-5 position-sm">
+
   <div class="col-md-10 px-md-5 px-2 mt-5 justify-content-center text-center">
 
     <%= form_with model: @post, url: update_post_path(current_end_user.display_name, @post.id), method: :patch do |f| %>
@@ -28,5 +28,5 @@
       <% end %>
     </div>
   </div>
-  
+
 </div>
