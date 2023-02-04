@@ -8,8 +8,9 @@ class Public::LikesController < ApplicationController
     redirect_to post_likes_path(current_end_user.display_name)
   end
 
-  def destroy
-    @like = current_end_user.likes.where(table_id: params[:table_id]).first
+  def unliked
+    @like = current_end_user.likes.where(table_id: params[:id]).first
+    binding.pry
     @like.destroy
     redirect_to post_likes_path(current_end_user.display_name)
   end

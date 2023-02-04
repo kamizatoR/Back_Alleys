@@ -16,8 +16,15 @@ Rails.application.routes.draw do
 
   scope module: :public do
 
+    #いいね関連のURL
+    resources :likes, only: [:create]
+    get ':display_name/post_likes' => "likes#post_likes", as: "post_likes"
+    get ':display_name/comment_likes' => "likes#comment_likes", as: "comment_likes"
+    get ':display_name/reply_likes' => "likes#reply_likes", as: "reply_likes"
+    delete 'likes/:id' => "likes#unliked", as: "unliked"
 
     get 'new_arrival_post' => "homes#new_arrival", as: "new_arrival"
+
 
     #ユーザー情報関連のURL
     get '/:display_name/mypage' => "end_users#mypage", as: "mypage"
@@ -63,12 +70,7 @@ Rails.application.routes.draw do
     patch '/:display_name/:post_id/:comment_id/replies/:id' => "replies#update", as: "update_reply"
     delete '/:display_name/:post_id/:comment_id/replies/:id' => "replies#destroy", as: "destroy_reply"
 
-    #いいね関連のURL
-    resources :likes, only: [:create]
-    get ':display_name/post_likes' => "likes#post_likes", as: "post_likes"
-    get ':display_name/comment_likes' => "likes#comment_likes", as: "comment_likes"
-    get ':display_name/reply_likes' => "likes#reply_likes", as: "reply_likes"
-    get 'likes/:id' => "likes#destroy", as: "unliked"
+
 
   end
 
