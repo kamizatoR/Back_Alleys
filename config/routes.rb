@@ -17,11 +17,10 @@ Rails.application.routes.draw do
   scope module: :public do
 
     #いいね関連のURL
-    resources :likes, only: [:create]
+    resources :likes, only: [:create, :destroy]
     get ':display_name/post_likes' => "likes#post_likes", as: "post_likes"
     get ':display_name/comment_likes' => "likes#comment_likes", as: "comment_likes"
     get ':display_name/reply_likes' => "likes#reply_likes", as: "reply_likes"
-    delete 'likes/:id' => "likes#unliked", as: "unliked"
 
     get 'new_arrival_post' => "homes#new_arrival", as: "new_arrival"
 

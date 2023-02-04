@@ -1,30 +1,34 @@
  <div class="header">
     <div class="row border-bottom">
 
-      <div class="col-8">
+      <div class="col-md-8">
+
         <div class="row">
-          <div class="col-3">
-            <%= image_tag end_user.get_image, size: "90x90" %>
+          <div class="col-md-3 col-3 px-0">
+            <%= image_tag end_user.get_image, size: "90x90", class: "img-60" %>
           </div>
-          <div class="col-8 ml-0">
+
+          <div class="col-md-8 col-9 ml-md-0">
             <div class="row d-flex align-items-end">
-              <div class="col-12 mt-2">
+
+              <div class="col-md-12 mt-md-2 px-0">
                 <% if end_user_signed_in? && current_end_user != end_user %>
                   <% if current_end_user.followings.include?(end_user) %>
-                    <%= link_to unfollow_path(end_user.display_name), method: :delete, class: "btn btn-outline-light text-warning" do %>
+                    <%= link_to unfollow_path(end_user.display_name), method: :delete, class: "btn btn-outline-light text-warning btn-small" do %>
                       フォロー解除★
                     <% end %>
                   <% else %>
-                    <%= link_to following_path(end_user.display_name), method: :post, class: "btn btn-outline-light text-warning" do %>
+                    <%= link_to following_path(end_user.display_name), method: :post, class: "btn btn-outline-light text-warning btn-small" do %>
                       フォロー☆
                     <% end %>
                   <% end %>
                 <% end %>
               </div>
 
-              <div class="col-12 mt-3">
-                <h5><strong><%= end_user.display_name %></strong></h5>
+              <div class="col-12 mt-md-3 px-0">
+                <h5 class="font-08"><strong><%= end_user.display_name %></strong></h5>
               </div>
+
             </div>
 
 
@@ -32,42 +36,39 @@
         </div>
       </div>
 
-      <div class="col-3 ml-5">
-        <nav class="nav nav-bar flex-column">
+      <div class="col-md-3  ml-md-5">
+        <div class="row font-07 txt-center">
 
-          <ul class="navbar-nav">
-
-            <li class="nav-item">
+            <div class="mt-md-2  col col-md-12 px-0 font-06">
               <%= link_to "フォロワー", follower_index_path(end_user.display_name), class: "text-decoration-none text-dark" %>
-              <%= end_user.followers.count %>人
-            </li>
-            <li class="nav-item my-2">
+                <%= end_user.followers.count %>人
+            </div>
+            <div class="mt-md-2 col col-md-12  px-0">
               <%= link_to "フォロー", follow_index_path(end_user.display_name), class: "text-decoration-none text-dark" %>
-              <%= end_user.followings.count %>人
-            </li>
-            <li class="nav-item">
+                <%= end_user.followings.count %>人
+            </div>
+            <div class="mt-md-2  col col-md-12  px-0">
               <%= link_to " いいね",post_likes_path(end_user.display_name), class: "text-decoration-none text-dark" %>
-              <%= end_user.likes.count %> 件
-            </li>
-          </ul>
+                <%= end_user.likes.count %> 件
+            </div>
+        </div>
 
-        </nav>
 
       </div>
     </div>
 
     <div class="row my-2 justify-content-around ">
-        <div class="col-3 btn btn-lg bg-info">
+        <div class="col-3 btn btn-lg bg-info btn-small">
           <%= link_to timeline_path(end_user.display_name), class: "text-decoration-none text-light" do %>
             <strong>投稿一覧</strong>
           <% end %>
         </div>
-        <div class="col-3 btn btn-lg bg-info">
+        <div class="col-md-3 col-4 btn btn-lg bg-info btn-small">
           <%= link_to comments_list_path(end_user.display_name), class: "text-decoration-none text-light" do %>
             <strong>コメント一覧</strong>
           <% end %>
         </div>
-        <div class="col-3 btn btn-lg bg-info">
+        <div class="col-md-3 col-4 btn btn-lg bg-info btn-small">
           <%= link_to replies_list_path(end_user.display_name), class: "text-decoration-none text-light"  do %>
             <strong>リプライ一覧</strong>
           <% end %>

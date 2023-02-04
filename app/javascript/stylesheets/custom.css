@@ -124,6 +124,11 @@
     height: 17px;
   }
 
+  .img-60{
+    width: 57px;
+    height: 48px;
+  }
+
   .post-sm-img{
     width: 150px;
     height: 100px;
@@ -140,13 +145,30 @@
     right: 0;
   }
 
+  .txt-center{
+    text-align: center;
+  }
+
+  .font-06{
+    font-size:0.6rem;
+  }
+
+  .font-1{
+    font-size:1rem;
+    margin-bottom:0px;
+  }
+
+  .padding-l{
+    padding-left: 10px;
+  }
+
 }
 
 @media screen and (max-width: 425px) {
-  
+
   .comment-sm-name {
     display: block;
   }
-  
+
 }
 

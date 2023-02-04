@@ -53,7 +53,7 @@
 
   <% if end_user_signed_in? %>
     <% if current_end_user.liked_by?(current_end_user.id, @post.id) %>
-      <%= link_to "♥", unliked_path(@post.id), method: :delete, class: "btn btn-outline-info" %>
+      <%= link_to "♥", like_path(@post.id), method: :delete, class: "btn btn-outline-info" %>
     <% else %>
       <%= render 'public/likes/like_form', table: @post %>
     <% end %>
