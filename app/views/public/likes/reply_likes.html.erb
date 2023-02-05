@@ -6,23 +6,26 @@
     <% @likes.each do |like| %>
       <% if like.end_user.is_deleted != true %>
 
-        <div class="col-4 h75">
-          <div class="card my-3 vh75">
+        <div class="col-lg-4 col-md-6">
+          <div class="card my-md-3 my-1">
 
             <%= link_to reply_path(like.end_user.display_name, like.table.comment.post_id, like.table.comment_id, like.table.id), class: "text-decoration-none text-dark"  do %>
-              <div class="card-body h-200 ">
+              <div class="card-body h-200 no-height card-body-upper-row">
 
-                <p class="card-title">
+                <p class="card-title font-075 overflow-hidden">
                   <i class="fas fa-solid fa-reply"></i>
                   <%= image_tag like.table.end_user.get_image, size: "25x25" %>
                   <%= like.table.end_user.display_name %>
                 </p>
 
-                <p class="card-title"> <%= truncate(like.table.body, length: 70) %></p>
+                <p class="card-title"> <%= truncate(like.table.body, length: 65) %></p>
+
               </div>
-              <div class="card-body text-right">
-                <p class="card-text text-"> <i class="fas fa-solid fa-heart ml-3"></i> <%= like.table.likes.count %></p>
+
+              <div class="card-body text-right card-body text-right card-sm-padding">
+                <p class="card-text"> <i class="fas fa-solid fa-heart ml-3"></i> <%= like.table.likes.count %></p>
               </div>
+
             <% end %>
 
           </div>

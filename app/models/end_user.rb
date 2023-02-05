@@ -16,10 +16,9 @@ class EndUser < ApplicationRecord
 
   has_many :likes, dependent: :destroy
 
-
   has_one_attached :image
 
-  validates :display_name, uniqueness: true, presence: true
+  validates :display_name, uniqueness: true, presence: true, length: { minimum: 1, maximum: 12}
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :first_kana, presence: true
@@ -67,7 +66,6 @@ class EndUser < ApplicationRecord
   def reply_like(id)
     Like.where(table_type: "Reply", end_user_id: id)
   end
-
 
   def get_image
     unless image.attached?

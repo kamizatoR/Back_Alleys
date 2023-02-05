@@ -69,8 +69,6 @@ Rails.application.routes.draw do
     patch '/:display_name/:post_id/:comment_id/replies/:id' => "replies#update", as: "update_reply"
     delete '/:display_name/:post_id/:comment_id/replies/:id' => "replies#destroy", as: "destroy_reply"
 
-
-
   end
 
   namespace :admin do

@@ -5,15 +5,15 @@
 
     <% @end_user_replies.each do |reply| %>
       <% if reply.end_user.is_deleted != true %>
-      <div class="col-4 h75">
-        <div class="card my-3 vh75">
+      <div class="col-lg-4 col-md-6">
+        <div class="card my-md-3 my-1">
 
             <%= link_to reply_path(reply.comment.post.end_user.display_name, reply.comment.post_id, reply.comment_id, reply.id), class: "text-decoration-none text-dark"  do %>
-              <div class="card-body h-200 ">
-                <p class="card-title"> <%= truncate(reply.body, length: 78) %></p>
+              <div class="card-body h-200 no-height card-body-upper-row">
+                <p class="card-title"> <%= truncate(reply.body, length: 65) %></p>
               </div>
-              <div class="card-body text-right">
-                <p class="card-text text-"><i class="fas fa-solid fa-heart ml-3"></i> <%= reply.likes.count %></p>
+              <div class="card-body text-right card-sm-padding">
+                <p class="card-text"><i class="fas fa-solid fa-heart ml-3"></i> <%= reply.likes.count %></p>
               </div>
             <% end %>
 

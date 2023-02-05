@@ -20,8 +20,11 @@ class Public::EndUsersController < ApplicationController
 
   def update
     @end_user = current_end_user
-    @end_user.update(end_user_params)
-    redirect_to mypage_path
+    if @end_user.update(end_user_params)
+      redirect_to mypage_path
+    else
+      render :edit
+    end
   end
 
   def withdraw
