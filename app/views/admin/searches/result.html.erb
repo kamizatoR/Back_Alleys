@@ -33,7 +33,7 @@
   <% else %>
 
     <% @search_results.each do |search_result| %>
-      <% if search_result.is_deleted != true && search_result.not_display_guest %>
+      <% if search_result.is_deleted != true %>
         <tr>
           <td class="font-03">
 

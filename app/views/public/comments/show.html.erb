@@ -47,11 +47,12 @@
   <div class="col-5  pt-2">
     ♥ <%= @comment.likes.count %>件
   </div>
-
-  <% if current_end_user.liked_by?(current_end_user.id, @comment.id) %>
-    <%= link_to "♥", like_path(@comment.id), method: :delete, class: "btn btn-outline-info" %>
-  <% else %>
-    <%= render 'public/likes/like_form', table: @comment %>
+  <% if end_user_signed_in? %>
+    <% if current_end_user.liked_by?(current_end_user.id, @comment.id) %>
+      <%= link_to "♥", like_path(@comment.id), method: :delete, class: "btn btn-outline-info" %>
+    <% else %>
+      <%= render 'public/likes/like_form', table: @comment %>
+    <% end %>
   <% end %>
 
 </div>
@@ -71,15 +72,17 @@
   </div>
 <% end %>
 
-<% if current_end_user.email != "guest@example.com" %>
-  <div class="mt-md-4 mt-3 border-bottom">
-    <%= form_with model: @reply, url: replies_path(@comment.post.end_user.display_name, @comment.post.id, @comment.id) do |f| %>
-      <div class="col-md-11">
-        <%= f.text_area :body,rows:'3',placeholder: "コメントをここに" , class: "form-control" %>
-      </div>
-      <div class="text-right">
-        <%= f.submit "コメントする", class: "btn btn-outline-info btn-small" %>
-      </div>
-    <% end %>
-  </div>
+<% if end_user_signed_in? %>
+  <% if current_end_user.not_display_guest %>
+    <div class="mt-md-4 mt-3 border-bottom">
+      <%= form_with model: @reply, url: replies_path(@comment.post.end_user.display_name, @comment.post.id, @comment.id) do |f| %>
+        <div class="col-md-11">
+          <%= f.text_area :body,rows:'3',placeholder: "コメントをここに" , class: "form-control" %>
+        </div>
+        <div class="text-right">
+          <%= f.submit "コメントする", class: "btn btn-outline-info btn-small" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

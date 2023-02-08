@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
     post_ids = Like.select('table_id, COUNT(*) AS likes_count').where(table_type: 'Post', created_at: (Time.current.beginning_of_day - 7.days)..).group(:table_id).order('likes_count DESC').map(&:table_id)
-    #@posts = Post.where(id: post_ids).order(Arel.sql("field(id, #{post_ids.join(',')})"))
+    #@posts = Post.where(id: post_ids).order(Arel.sql("field(id, #{post_ids.join(',')})")) #←SQLiteでは動作しない？コードらしいです。
     @post_arr = []
     post_ids.each do |id|
       @post_arr << Post.find(id)

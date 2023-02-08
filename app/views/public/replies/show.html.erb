@@ -43,11 +43,12 @@
   <div class="col-4  pt-2">
     ♥ <%= @reply.likes.count %>件
   </div>
-
-  <% if current_end_user.liked_by?(current_end_user.id, @reply.id) %>
-    <%= link_to "♥", like_path(table_id: @reply.id), method: :delete, class: "btn btn-outline-info" %>
-  <% else %>
-    <%= render 'public/likes/like_form', table: @reply %>
+  <% if end_user_signed_in? %>
+    <% if current_end_user.liked_by?(current_end_user.id, @reply.id) %>
+      <%= link_to "♥", like_path(table_id: @reply.id), method: :delete, class: "btn btn-outline-info" %>
+    <% else %>
+      <%= render 'public/likes/like_form', table: @reply %>
+    <% end %>
   <% end %>
 
 </div>

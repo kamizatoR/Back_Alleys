@@ -24,7 +24,6 @@ Rails.application.routes.draw do
 
     get 'new_arrival_post' => "homes#new_arrival", as: "new_arrival"
 
-
     #ユーザー情報関連のURL
     get '/:display_name/mypage' => "end_users#mypage", as: "mypage"
     get '/:display_name/mypage/edit' => "end_users#edit", as: "edit_mypage"
@@ -68,7 +67,7 @@ Rails.application.routes.draw do
     get '/:display_name/:post_id/:comment_id//replies/:id/edit' => "replies#edit", as: "edit_reply"
     patch '/:display_name/:post_id/:comment_id/replies/:id' => "replies#update", as: "update_reply"
     delete '/:display_name/:post_id/:comment_id/replies/:id' => "replies#destroy", as: "destroy_reply"
-
+    
   end
 
   namespace :admin do

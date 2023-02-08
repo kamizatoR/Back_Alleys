@@ -33,7 +33,6 @@
   <% else %>
 
     <% @search_results.each do |search_result| %>
-      <% if search_result.is_deleted != true && search_result.not_display_guest %>
         <tr>
           <td class="font-03 overflow-hidden">
 
@@ -45,7 +44,6 @@
 
           </td>
         </tr>
-      <% end %>
     <% end %>
 
   <% end %>

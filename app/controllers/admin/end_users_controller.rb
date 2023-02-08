@@ -10,6 +10,7 @@ class Admin::EndUsersController < ApplicationController
     end
 
     @suspended_end_users= Kaminari.paginate_array(@suspended_end_user_arr).page(params[:page]).per(10)
+
   end
 
   def show
@@ -23,7 +24,7 @@ class Admin::EndUsersController < ApplicationController
   def suspended
     @end_user = EndUser.find(params[:id])
     @end_user.update(is_deleted: true)
-    redirect_to root_path
+    redirect_to admin_end_users_path
   end
 
 end

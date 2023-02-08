@@ -25,7 +25,7 @@
 
     <div class="row mb-md-3 justify-content-center">
       <p class="col-md-3 col-8 mr-md-2">会員ステータス</p>
-        <% if @end_user.is_deleted == false %>
+        <% if @end_user.is_deleted != true %>
           <p class="col-md-4 col-4 mr-md-2 text-success text-center"><strong>有効</strong></p>
         <% else %>
           <p class="col-md-4 col-4 mr-md-2 text-secondary text-center"><strong>退会</strong></p>
@@ -53,7 +53,7 @@
 </div>
 
 <div class="row mb-3 justify-content-center">
-  <% if @end_user.is_deleted != true %>
+  <% if @end_user.is_deleted != true && @end_user.not_display_guest %>
     <%= link_to admin_account_suspension_path, class: "btn btn-outline-danger btn-small" do %>
       アカウントを停止する <i class="fas fa-solid fa-ban"></i>
     <% end %>
