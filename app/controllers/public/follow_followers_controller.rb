@@ -1,5 +1,5 @@
 class Public::FollowFollowersController < ApplicationController
-   before_action :authenticate_any!
+  before_action :authenticate_any!
 
   def create
     @end_user = EndUser.find_by(display_name: params[:display_name])
@@ -16,12 +16,24 @@ class Public::FollowFollowersController < ApplicationController
 
   def follows
     @end_user = EndUser.find_by(display_name: params[:display_name])
-    @end_user_follows = @end_user.followings
+
+    @uncancelled_follows = []
+    @end_user.followings.each do |follow|
+      @uncancelled_follows << follow if follow.is_deleted == false
+    end
+    
+     @follows = Kaminari.paginate_array(@uncancelled_follows).page(params[:page]).per(12)
   end
 
   def followers
     @end_user = EndUser.find_by(display_name: params[:display_name])
-    @end_user_followers = @end_user.followers
+
+    @uncancelled_followers = []
+    @end_user.followers.each do |follower|
+      @uncancelled_followers << follower if follower.is_deleted == false
+    end
+    
+    @followers = Kaminari.paginate_array(@uncancelled_followers).page(params[:page]).per(12)
   end
 
 end

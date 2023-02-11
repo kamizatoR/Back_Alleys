@@ -16,7 +16,6 @@ class Public::PostsController < ApplicationController
     if @post.save
      redirect_to post_path(current_end_user.display_name, @post.id)
     else
-
       render :new
     end
   end
@@ -40,10 +39,10 @@ class Public::PostsController < ApplicationController
     redirect_to root_path
   end
 
-
   private
 
   def post_params
     params.require(:post).permit(:body, :image)
   end
+  
 end

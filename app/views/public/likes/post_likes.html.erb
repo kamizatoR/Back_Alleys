@@ -4,7 +4,7 @@
   <div class="row mt-2">
 
     <% @likes.each do |like| %>
-      <% if like.end_user.is_deleted != true %>
+      <% if like.end_user.hide_non_cancelled_users %>
 
         <div class="col-lg-4 col-md-6">
           <div class="card my-md-3 my-1">
@@ -15,7 +15,6 @@
                 <div class="card-body h-200 no-height card-body-upper-row">
                   <p class="card-title font-075 overflow-hidden">
                     <i class="fas fa-paper-plane"></i>
-
                     <%= image_tag like.table.end_user.get_image, size: "25x25" %>
                     <%= like.table.end_user.display_name %>
                   </p>
@@ -30,7 +29,6 @@
                 </div>
 
               <% else %>
-
                 <div class="card-body h-200 no-height card-body-upper-row">
                   <p class="card-title font-075">
                     <i class="fas fa-paper-plane"></i>
@@ -40,6 +38,7 @@
 
                   <p class="card-title"> <%= truncate(like.table.body, length: 70) %></p>
                 </div>
+
                 <div class="card-body text-right card-sm-padding">
                   <p class="card-text text-"> <i class="fas fa-solid fa-heart ml-3"></i> <%= like.table.likes.count %></p>
                 </div>
@@ -47,17 +46,16 @@
 
             <% end %>
 
-
           </div>
         </div>
       <% end %>
     <% end %>
-
 
   </div>
 
   <div class="row mt-5 d-flex justify-content-center">
     <%= paginate @likes %>
   </div>
+
 </div>
 

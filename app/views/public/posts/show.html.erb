@@ -11,11 +11,9 @@
       </div>
 
       <% if @post.image.attached? %>
-
         <div class="row justify-content-center">
           <%= image_tag @post.image, size: "350x200", class: "post-sm-img mt-3 mt-md-2" %>
         </div>
-
       <% end %>
 
       <div class="row justify-content-center mt-md-4 mt-2 font-07 mx-1 p-md-0">
@@ -44,7 +42,7 @@
 <div class="row mt-md-5 mt-2 mb-2 border-top border-bottom">
 
   <div class="col-5 pt-2 text-center">
-    <i class="fas fa-comment"></i> <%= @post.comments.count %>件
+    <i class="fas fa-comment"></i> <%= @post.comment_count %>件
   </div>
 
   <div class="col-5  pt-2">
@@ -62,18 +60,20 @@
 </div>
 
 <% @post.comments.each do |comment| %>
-  <div class="row py-md-3 border-bottom">
-    <div class="col-md-8">
-      <%= image_tag comment.end_user.get_image, size: "30x30", class: "rounded-circle img-17" %>
-      <span class="font-03"><%= comment.end_user.display_name %></span>
-    </div>
+  <% if comment.end_user.hide_non_cancelled_users %>
+    <div class="row py-md-3 border-bottom">
+      <div class="col-md-8">
+        <%= image_tag comment.end_user.get_image, size: "30x30", class: "rounded-circle img-17" %>
+        <span class="font-03"><%= comment.end_user.display_name %></span>
+      </div>
 
-    <div class="col-md-9 offset-1">
-      <%= link_to comment_path(comment.post.end_user.display_name, comment.post_id,comment.id), class: "text-decoration-none text-dark font-08" do %>
-        <i class="fas fa-comment"></i>  <%= comment.body %>
-      <% end %>
+      <div class="col-md-9 offset-1">
+        <%= link_to comment_path(comment.post.end_user.display_name, comment.post_id,comment.id), class: "text-decoration-none text-dark font-08" do %>
+          <i class="fas fa-comment"></i>  <%= comment.body %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <% if end_user_signed_in? %>

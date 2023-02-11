@@ -1,13 +1,12 @@
 <div class="container">
+  
   <%= render 'timeline_header', end_user: @end_user %>
 
   <div class="row mt-2">
-
     <% @end_user_comments.each do |comment| %>
-      <% if comment.end_user.is_deleted != true %>
-      <div class="col-lg-4 col-md-6">
-        <div class="card my-md-3 my-1">
-
+      <% if comment.end_user.hide_non_cancelled_users %>
+        <div class="col-lg-4 col-md-6">
+          <div class="card my-md-3 my-1">
             <%= link_to comment_path(comment.post.end_user.display_name, comment.post_id, comment.id), class: "text-decoration-none text-dark"  do %>
               <div class="card-body h-200 no-height card-body-upper-row">
                 <p class="card-title"> <%= truncate(comment.body, length: 65) %></p>
@@ -16,12 +15,10 @@
                 <p class="card-text"><i class="fas fa-solid fa-reply"></i> <%= comment.replies.count %> <i class="fas fa-solid fa-heart ml-3"></i> <%= comment.likes.count %></p>
               </div>
             <% end %>
-
+          </div>
         </div>
-      </div>
       <% end %>
     <% end %>
-
   </div>
 
   <div class="row mt-5 d-flex justify-content-center">

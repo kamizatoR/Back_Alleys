@@ -15,7 +15,6 @@
   <div class="row mt-2">
 
     <% @posts.each do |post| %>
-      <% if post.end_user.is_deleted != true %>
       <div class="col-lg-4 col-md-6">
         <div class="card my-md-3 my-1">
 
@@ -65,7 +64,6 @@
         <% end %>
         </div>
       </div>
-      <% end %>
     <% end %>
 
   </div>

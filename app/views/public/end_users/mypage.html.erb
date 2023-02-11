@@ -3,7 +3,7 @@
 
 <div class="container mt-md-5 mt-3">
 
-    <% if current_end_user.email != "guest@example.com"%>
+    <% if current_end_user.not_display_guest %>
       <div class="row mb-md-3 justify-content-center">
         <p class="col-md-3 col-6 mr-md-2">会員ID</p>
         <p class="col-md-4 col-6 mr-md-2 text-center">No.<%= current_end_user.id %></p>

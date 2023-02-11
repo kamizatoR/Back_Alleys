@@ -42,7 +42,7 @@
 
 <div class="row mt-md-5 mt-2 mb-2 border-top border-bottom">
   <div class="col-5 pt-2 text-center">
-    <i class="fas fa-solid fa-reply"></i> <%= @comment.replies.count %>件
+    <i class="fas fa-solid fa-reply"></i> <%= @comment.reply_count %>件
   </div>
   <div class="col-5  pt-2">
     ♥ <%= @comment.likes.count %>件
@@ -58,18 +58,20 @@
 </div>
 
 <% @comment.replies.each do |reply| %>
-  <div class="row py-md-3 border-bottom">
-    <div class="col-md-6">
-      <%= image_tag reply.end_user.get_image, size: "30x30", class: "rounded-circle img-17" %>
-      <span class="font-03"><%= reply.end_user.display_name %></span>
-    </div>
+  <% if reply.end_user.hide_non_cancelled_users %>
+    <div class="row py-md-3 border-bottom">
+      <div class="col-md-6">
+        <%= image_tag reply.end_user.get_image, size: "30x30", class: "rounded-circle img-17" %>
+        <span class="font-03"><%= reply.end_user.display_name %></span>
+      </div>
 
-    <div class="col-md-9 offset-1">
-      <%= link_to reply_path(@comment.post.end_user.display_name, reply.comment.post_id, reply.comment.id, reply.id), class: "text-decoration-none text-dark font-08" do %>
-        <i class="fas fa-solid fa-reply"></i> <%= reply.body %>
-      <% end %>
+      <div class="col-md-9 offset-1">
+        <%= link_to reply_path(@comment.post.end_user.display_name, reply.comment.post_id, reply.comment.id, reply.id), class: "text-decoration-none text-dark font-08" do %>
+          <i class="fas fa-solid fa-reply"></i> <%= reply.body %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <% if end_user_signed_in? %>

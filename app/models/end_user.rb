@@ -40,7 +40,11 @@ class EndUser < ApplicationRecord
   end
 
   def not_display_guest
-      self.email != 'guest@example.com'
+    self.email != 'guest@example.com'
+  end
+
+  def hide_non_cancelled_users
+    self.is_deleted == false
   end
 
   def follow(end_user_id)
@@ -74,5 +78,48 @@ class EndUser < ApplicationRecord
     end
     image
   end
+
+  def likes_count
+    uncancelled_user_likes = []
+    self.likes.each do |like|
+      uncancelled_user_likes << like if like.end_user.is_deleted == false
+      #binding.pry
+    end
+
+    if uncancelled_user_likes.present?
+      uncancelled_user_likes.count
+    else
+      0
+    end
+  end
+
+  def followers_count
+    uncancelled_user_followers = []
+    self.followers.each do |follower|
+      uncancelled_user_followers << follower if follower.is_deleted == false
+      #binding.pry
+    end
+
+    if uncancelled_user_followers.present?
+      uncancelled_user_followers.count
+    else
+      0
+    end
+  end
+
+  def followings_count
+    uncancelled_user_follows = []
+    self.followings.each do |follow|
+      uncancelled_user_follows << follow if follow.is_deleted == false
+      #binding.pry
+    end
+
+    if uncancelled_user_follows.present?
+      uncancelled_user_follows.count
+    else
+      0
+    end
+  end
+
 
 end

@@ -14,4 +14,18 @@ class Post < ApplicationRecord
   def self.looks(word)
     @post = Post.where('body LIKE?', "%#{word}%")
   end
+
+  def comment_count
+    uncancelled_user_comments = []
+    self.comments.each do |comment|
+      uncancelled_user_comments << comment if comment.end_user.is_deleted == false
+      #binding.pry
+    end
+
+    if uncancelled_user_comments.present?
+      uncancelled_user_comments.count
+    else
+      0
+    end
+  end
 end

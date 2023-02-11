@@ -24,8 +24,6 @@
     text-overflow: ellipsis;
   }
 
-
-
 @media screen and (max-width: 1025px) {
 
   .timeline-md-img{
@@ -89,8 +87,6 @@
 
 }
 
-
-/*-------------*/
 @media screen and (max-width: 425px) {
   .btn-small {
     padding: 0.375rem 0rem;

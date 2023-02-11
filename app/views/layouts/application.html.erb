@@ -27,7 +27,7 @@
             <% end %>
           </div>
 
-          <nav class="nav nav-bar flex-column ">
+          <nav class="nav nav-bar flex-column">
 
             <% if end_user_signed_in? %>
 
@@ -65,35 +65,10 @@
                     <% if current_end_user.get_image%>
                       <%= image_tag current_end_user.image, size: "40x40", class: "rounded img-30-30" %>
                     <% end %>
-
                     <strong><%= current_end_user.display_name %></strong>
                   <% end %>
                 </li>
-
-                <li class="nav-item my-2">
-                  <i class="fas fa-cat"></i>
-                  <i class="fas fa-dog"></i>
-                  <i class="fas fa-solid fa-paw"></i>
-                  <i class="fas fa-comment"></i>
-                  <i class="fas fa-solid fa-thumbs-up"></i>
-                  <i class="fas fa-regular fa-thumbs-up"></i>
-                  <i class="fas fa-solid fa-user-plus"></i>
-
-                  <i class="fas fa-solid fa-reply"></i>
-                  <i class="fas fa-solid fa-address-book"></i>
-                  <i class="fas fa-solid fa-user-check"></i>
-                  <i class="fas fa-solid fa-users"></i>
-                  <i class="fas fa-solid fa-user-xmark"></i>
-                  <i class="fas fa-solid fa-user-gear"></i>
-                  <i class="fas fa-solid fa-crown"></i>
-                  <i class="fas fa-solid fa-gear"></i>
-                  <i class="fas fa-solid fa-user-minus"></i>
-                  <i class="fas fa-solid fa-pen-to-square"></i>
-
-
-
-
-                </li>
+                
               </ul>
 
             <% elsif admin_signed_in? %>

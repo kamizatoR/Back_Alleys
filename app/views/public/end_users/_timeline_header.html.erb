@@ -41,15 +41,15 @@
 
             <div class="mt-lg-2  col col-lg-12 px-0 font-06">
               <%= link_to "フォロワー", follower_index_path(end_user.display_name), class: "text-decoration-none text-dark" %>
-                <%= end_user.followers.count %>人
+                <%= end_user.followers_count %>人
             </div>
             <div class="mt-lg-2 col col-lg-12  px-0">
               <%= link_to "フォロー", follow_index_path(end_user.display_name), class: "text-decoration-none text-dark" %>
-                <%= end_user.followings.count %>人
+                <%= end_user.followings_count %>人
             </div>
             <div class="mt-lg-2  col col-lg-12  px-0">
               <%= link_to " いいね",post_likes_path(end_user.display_name), class: "text-decoration-none text-dark" %>
-                <%= end_user.likes.count %> 件
+                <%= end_user.likes_count %> 件
             </div>
         </div>
 
