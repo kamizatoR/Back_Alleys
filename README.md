@@ -27,12 +27,5 @@ https://docs.google.com/spreadsheets/d/1eZPvaSIHPtmfI0JXseQBzt-v-HPmitPG50GMibdB
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-<<<<<<< HEAD
 ##使用素材
 *検討中です。
-=======
-## 使用素材
-
-##実装機能URL
-https://docs.google.com/spreadsheets/d/1eZPvaSIHPtmfI0JXseQBzt-v-HPmitPG50GMibdBY9s/edit#gid=1898975908
->>>>>>> origin/main
