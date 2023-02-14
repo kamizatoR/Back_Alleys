@@ -1,23 +1,35 @@
 <div class="container">
+
   <%= render 'timeline_header', end_user: @end_user %>
 
   <div class="row mt-2">
 
     <% @end_user_replies.each do |reply| %>
+
       <% if reply.end_user.hide_non_cancelled_users %>
+
         <div class="col-lg-4 col-md-6">
-          <div class="card my-md-3 my-1">
+
+          <div class="card my-md-3 my-1 shadow">
+
             <%= link_to reply_path(reply.comment.post.end_user.display_name, reply.comment.post_id, reply.comment_id, reply.id), class: "text-decoration-none text-dark"  do %>
+
               <div class="card-body h-200 no-height card-body-upper-row">
                 <p class="card-title"> <%= truncate(reply.body, length: 65) %></p>
               </div>
+
               <div class="card-body text-right card-sm-padding">
-                <p class="card-text"><i class="fas fa-solid fa-heart ml-3"></i> <%= reply.likes.count %></p>
+                <p class="card-text"><i class="fas fa-solid fa-heart ml-3 text-danger"></i> <%= reply.likes.count %></p>
               </div>
+
             <% end %>
+
           </div>
+
         </div>
+
       <% end %>
+
     <% end %>
 
   </div>
@@ -25,5 +37,5 @@
   <div class="row mt-5 d-flex justify-content-center">
     <%= paginate @end_user_replies %>
   </div>
-  
+
 </div>

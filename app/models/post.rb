@@ -17,6 +17,7 @@ class Post < ApplicationRecord
 
   def comment_count
     uncancelled_user_comments = []
+    
     self.comments.each do |comment|
       uncancelled_user_comments << comment if comment.end_user.is_deleted == false
       #binding.pry
@@ -27,5 +28,6 @@ class Post < ApplicationRecord
     else
       0
     end
+    
   end
 end

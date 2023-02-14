@@ -1,25 +1,32 @@
-
 <div class="row mt-md-5">
 
   <div class="col text-center">
+    
     <% if current_end_user == @end_user %>
       <h4>マイフォローリスト</h4>
     <% else %>
       <h4 class="font-1"><%= @end_user.display_name %></h4><p class="mb-3">さんのフォローリスト</p>
     <% end %>
+    
   </div>
 
   <table class="table">
+    
     <% @follows.each do |follow| %>
+    
       <tr>
+        
         <td class="padding-l">
           <%= link_to timeline_path(follow.display_name), class: "text-decoration-none text-dark padding-l" do %>
             <%= image_tag follow.get_image, size: "25x25" %>
             <%= follow.display_name %>
           <% end %>
         </td>
+        
       </tr>
+      
     <% end %>
+    
   </table>
 
 </div>

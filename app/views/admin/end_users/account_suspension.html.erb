@@ -1,13 +1,19 @@
 
   <div class="d-flex justify-content-center text-center">
+    
     <div class="d-flex align-items-center" style="height:600px;">
+      
       <div>
+        
         <h1><strong>このユーザーアカウントを停止しますか？</strong></h1>
 
         <div class="row text-center justify-content-around mt-5">
           <%= link_to "否認", admin_end_user_path(@end_user.id), class: "btn-lg btn-primary col-4" %>
           <%= link_to "承認", admin_suspended_path, method: :patch, class: "btn-lg  btn-danger col-4", "data-confirm"=> "本当に停止してもよろしいですか？" %>
         </div>
+        
       </div>
+      
     </div>
+    
   </div>

@@ -1,22 +1,25 @@
 <%= render 'public/errors/error_display', model: @post %>
 
 <div class="row mt-5 justify-content-center">
+
   <div class="col-md-10 px-md-5 mt-md-5">
 
-        <%= form_with model: @post, url: posts_path(current_end_user.display_name) do |f| %>
+    <%= form_with model: @post, url: posts_path(current_end_user.display_name) do |f| %>
 
-          <div class="row mx-3 mb-3 px-md-5 justify-content-around ">
-            <%= f.file_field :image, accept: "image/*" %>
-          </div>
+      <div class="row mx-3 mb-3 px-md-5 justify-content-around ">
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
 
-          <div class="row mx-3 mb-3 px-md-5 justify-content-around ">
-            <%= f.text_area :body, rows:'5', placeholder: "本文", class: "form-control col-md-12"  %>
-          </div>
+      <div class="row mx-3 mb-3 px-md-5 justify-content-around ">
+        <%= f.text_area :body, rows:'5', placeholder: "本文", class: "form-control col-md-12"  %>
+      </div>
 
-          <div class="row mx-3 mt-md-3 mb-md-0 px-md-5 justify-content-around ">
-            <%= f.submit "投稿", class: "btn btn-success col-md-4" %>
-          </div>
-        <% end %>
+      <div class="row mx-3 mt-md-3 mb-md-0 px-md-5 justify-content-around ">
+        <%= f.submit "投稿", class: "btn btn-success col-md-4" %>
+      </div>
+
+    <% end %>
 
   </div>
+
 </div>

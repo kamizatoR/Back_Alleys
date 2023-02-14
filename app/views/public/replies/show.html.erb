@@ -1,39 +1,48 @@
 <div class="row mt-5 position-sm">
-    <div class="col-md-10 col-12 text-center">
 
-      <div class="row mb-md-3 ml-md-0 mt-1">
-        <div class="col-sm-12 text-left">
-          <%= link_to  timeline_path(@reply.end_user.display_name), class: "text-decoration-none text-dark" do  %>
-            <%= image_tag @reply.end_user.get_image, size: "40x40", class: "rounded-circle img-25" %>
-            <strong class="font-07"><%= @reply.end_user.display_name %></strong>　<i class="fas fa-solid fa-reply"></i>
-          <% end %>
-        </div>
-        <div class="ml-md-0 ml-2 font-03 col-sm-12 text-left">
-          <%= link_to comment_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment.id), class: "text-decoration-none text-info"  do %>
-            <small class="ml-3">返信先<%= @reply.comment.end_user.display_name %></small>
-          <% end %>
-        </div>
+  <div class="col-md-10 col-12 text-center">
+
+    <div class="row mb-md-3 ml-md-0 mt-1">
+
+      <div class="col-sm-12 text-left">
+        <%= link_to  timeline_path(@reply.end_user.display_name), class: "text-decoration-none text-dark" do  %>
+          <%= image_tag @reply.end_user.get_image, size: "40x40", class: "rounded-circle img-25" %>
+          <strong class="font-07"><%= @reply.end_user.display_name %></strong>　<i class="fas fa-solid fa-reply"></i>
+        <% end %>
       </div>
 
-      <div class="row justify-content-center mt-md-4 mt-2 font-07 mx-1 p-md-0">
-        <%= @reply.body %>
+      <div class="ml-md-0 ml-2 font-03 col-sm-12 text-left">
+        <%= link_to comment_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment.id), class: "text-decoration-none text-info"  do %>
+          <small class="ml-3">返信先<%= @reply.comment.end_user.display_name %></small>
+        <% end %>
       </div>
 
     </div>
 
+    <div class="row justify-content-center mt-md-4 mt-2 font-07 mx-1 p-md-0">
+      <%= @reply.body %>
+    </div>
+
+  </div>
+
   <% if end_user_signed_in? && @reply.end_user_id == current_end_user.id  %>
-    <div class="col-md-2 col-12 sm-list  pl-md-0 p-0">
+
+    <div class="col-md-2 col-12 sm-list pl-md-0 p-0">
+
       <div class="mb-2 mr-2 mr-md-0 ">
         <%= link_to  edit_reply_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment_id, @reply.id), class: "btn btn-outline-success btn-small" do %>
           編集 <i class="fas fa-solid fa-pen-to-square"></i>
         <% end %>
       </div>
+
       <div class="mb-2 mr-2 mr-md-0">
         <%= link_to  destroy_reply_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment_id, @reply.id), method: :delete, class: "btn btn-outline-danger btn-small", "data-confirm"=> "本当に削除しますか？" do %>
           削除 <i class="fas fa-solid fa-trash"></i>
         <% end %>
       </div>
+
     </div>
+
   <% end %>
 
 </div>
@@ -41,14 +50,17 @@
 <div class="row mt-5 mb-2 border-top border-bottom justify-content-center">
 
   <div class="col-4  pt-2">
-    ♥ <%= @reply.likes.count %>件
+   <i class="fas fa-solid fa-heart ml-3 text-danger"></i> <%= @reply.likes.count %>件
   </div>
+
   <% if end_user_signed_in? %>
+
     <% if current_end_user.liked_by?(current_end_user.id, @reply.id) %>
       <%= link_to "♥", like_path(table_id: @reply.id), method: :delete, class: "btn btn-outline-info" %>
     <% else %>
       <%= render 'public/likes/like_form', table: @reply %>
     <% end %>
+
   <% end %>
 
 </div>

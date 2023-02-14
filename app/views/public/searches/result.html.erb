@@ -1,52 +1,59 @@
 <%= render 'search' %>
 
 <table class="table table-fixed">
+
   <% if @range == "投稿" %>
 
     <% @search_results.each do |search_result| %>
 
-        <tr>
-          <td class="font-03 overflow-hidden" >
-            <%= image_tag search_result.end_user.get_image, size: "25x25", class: "img-15" %>
+      <tr>
 
-            <%= link_to timeline_path(search_result.end_user.display_name), class: "text-decoration-none text-dark " do %>
-              <%= search_result.end_user.display_name %>
-            <% end %>
-          </td>
-          <td class="font-03 overflow-hidden">
-            <%= link_to post_path(search_result.end_user.display_name, search_result.id), class: "text-decoration-none text-dark" do %>
-              <% if search_result.image.attached? %>
-                <%= image_tag search_result.image, size: "70x50", class: "img-50-30" %>
-              <% end %>
-            <% end %>
-          </td>
+        <td class="font-03 overflow-hidden" >
+          <%= image_tag search_result.end_user.get_image, size: "25x25", class: "img-15" %>
 
-          <td class="font-03 overflow-hidden">
-            <%= link_to post_path(search_result.end_user.display_name, search_result.id), class: "text-decoration-none text-dark" do %>
-              <%= truncate(search_result.body, length: 24) %>
+          <%= link_to timeline_path(search_result.end_user.display_name), class: "text-decoration-none text-dark " do %>
+            <%= search_result.end_user.display_name %>
+          <% end %>
+        </td>
+
+        <td class="font-03 overflow-hidden">
+          <%= link_to post_path(search_result.end_user.display_name, search_result.id), class: "text-decoration-none text-dark" do %>
+            <% if search_result.image.attached? %>
+              <%= image_tag search_result.image, size: "70x50", class: "img-50-30" %>
             <% end %>
-          </td>
-        </tr>
+          <% end %>
+        </td>
+
+        <td class="font-03 overflow-hidden">
+          <%= link_to post_path(search_result.end_user.display_name, search_result.id), class: "text-decoration-none text-dark" do %>
+            <%= truncate(search_result.body, length: 24) %>
+          <% end %>
+        </td>
+
+      </tr>
 
     <% end %>
 
   <% else %>
 
     <% @search_results.each do |search_result| %>
-        <tr>
-          <td class="font-03 overflow-hidden">
 
-            <%= image_tag search_result.get_image, size: "25x25", class: "img-15"  %>
+      <tr>
 
-            <%= link_to timeline_path(search_result.display_name), class: "text-decoration-none text-dark" do %>
-              <%= search_result.display_name %>
-            <% end %>
+        <td class="font-03 overflow-hidden">
+          <%= image_tag search_result.get_image, size: "25x25", class: "img-15"  %>
 
-          </td>
-        </tr>
+          <%= link_to timeline_path(search_result.display_name), class: "text-decoration-none text-dark" do %>
+            <%= search_result.display_name %>
+          <% end %>
+        </td>
+
+      </tr>
+
     <% end %>
 
   <% end %>
+
 </table>
 
 <div class="row mt-5 d-flex justify-content-center">

@@ -1,73 +1,83 @@
 <div class="row my-2 justify-content-around ">
-    <div class="col-5 col-md-5 btn btn-lg bg-info mb-sm-0 btn-small btn-medium">
-      <%= link_to root_path, class: "text-decoration-none text-light " do %>
-        <strong>週間ランキング</strong> <i class="fas fa-solid fa-crown text-warning"></i>
-      <% end %>
-    </div>
 
-    <div class="col-5 col-md-5 btn btn-lg bg-info mb-sm-0 btn-small btn-medium">
-      <%= link_to new_arrival_path, class: "text-decoration-none text-light" do %>
-        <strong>新着投稿 \New/</strong>
-      <% end %>
-    </div>
+  <div class="col-5 col-md-5 btn btn-lg bg-info mb-sm-0 btn-small btn-medium">
+    <%= link_to root_path, class: "text-decoration-none text-light " do %>
+      <strong>週間ランキング</strong> <i class="fas fa-solid fa-crown text-warning"></i>
+    <% end %>
+  </div>
+
+  <div class="col-5 col-md-5 btn btn-lg bg-info mb-sm-0 btn-small btn-medium">
+    <%= link_to new_arrival_path, class: "text-decoration-none text-light" do %>
+      <strong>新着投稿 \New/</strong>
+    <% end %>
+  </div>
+
 </div>
 
-  <div class="row mt-2">
+<div class="row mt-2">
 
-    <% @posts.each do |post| %>
-      <div class="col-lg-4 col-md-6">
-        <div class="card my-md-3 my-1">
+  <% @posts.each do |post| %>
 
-          <% if post.image.attached? %>
+    <div class="col-lg-4 col-md-6">
 
-            <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
+      <div class="card my-md-3 my-1 shadow">
 
-              <div class="card-body h-200 no-height card-body-upper-row">
-                <p class="card-title font-075 overflow-hidden">
-                  <i class="fas fa-paper-plane"></i>
-                  <%= image_tag post.end_user.get_image, size: "25x25" %>
-                  <%= post.end_user.display_name %>
-                </p>
+        <% if post.image.attached? %>
 
-                <%= image_tag post.image, size: "171x130", class: "top-md-img likes-md-img" %>
+          <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
 
-                <p class="card-title"> <%= truncate(post.body, length: 18) %></p>
+            <div class="card-body h-200 no-height card-body-upper-row">
 
-              </div>
-              <div class="card-body text-right card-sm-padding">
-                <p class="card-text "><i class="fas fa-comment"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3"></i> <%= post.likes.count %></p>
-              </div>
+              <p class="card-title font-075 overflow-hidden">
+                <i class="fas fa-paper-plane"></i>
+                <%= image_tag post.end_user.get_image, size: "25x25" %>
+                <%= post.end_user.display_name %>
+              </p>
 
-            <% end %>
+              <%= image_tag post.image, size: "171x130", class: "top-md-img likes-md-img" %>
+
+              <p class="card-title"> <%= truncate(post.body, length: 18) %></p>
+
+            </div>
+
+            <div class="card-body text-right card-sm-padding">
+              <p class="card-text "><i class="fas fa-comment text-secondary"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3 text-danger"></i> <%= post.likes.count %></p>
+            </div>
+
+          <% end %>
 
         <% else %>
 
-            <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
-              <div class="card-body h-200 no-height card-body-upper-row">
+          <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
 
-                <p class="card-title font-075 overflow-hidden">
-                  <i class="fas fa-paper-plane"></i>
-                  <%= image_tag post.end_user.get_image, size: "25x25" %>
-                  <%= truncate(post.end_user.display_name, length: 10) %>
-                </p>
+            <div class="card-body h-200 no-height card-body-upper-row">
 
-                <p class="card-title"> <%= truncate(post.body, length: 70) %></p>
+              <p class="card-title font-075 overflow-hidden">
+                <i class="fas fa-paper-plane"></i>
+                <%= image_tag post.end_user.get_image, size: "25x25" %>
+                <%= truncate(post.end_user.display_name, length: 10) %>
+              </p>
 
-              </div>
+              <p class="card-title"> <%= truncate(post.body, length: 70) %></p>
 
-              <div class="card-body text-right card-sm-padding">
-                <p class="card-text "><i class="fas fa-comment"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3"></i> <%= post.likes.count %></p>
-              </div>
+            </div>
 
-            <% end %>
+            <div class="card-body text-right card-sm-padding">
+              <p class="card-text "><i class="fas fa-comment text-secondary"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3 text-danger"></i> <%= post.likes.count %></p>
+            </div>
+
+          <% end %>
 
         <% end %>
-        </div>
+
       </div>
-    <% end %>
 
-  </div>
+    </div>
 
-  <div class="row mt-md-5 d-flex justify-content-center">
-    <%= paginate @posts %>
-  </div>
+  <% end %>
+
+</div>
+
+<div class="row mt-md-5 d-flex justify-content-center">
+  <%= paginate @posts %>
+</div>

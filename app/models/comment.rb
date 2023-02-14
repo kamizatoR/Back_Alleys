@@ -8,6 +8,7 @@ class Comment < ApplicationRecord
 
   def reply_count
     uncancelled_user_replies = []
+    
     self.replies.each do |reply|
       uncancelled_user_replies << reply if reply.end_user.is_deleted == false
       #binding.pry
@@ -18,5 +19,6 @@ class Comment < ApplicationRecord
     else
       0
     end
+    
   end
 end

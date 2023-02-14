@@ -1,67 +1,78 @@
 <%= render 'public/errors/error_display', model: @comment %>
 
 <div class="row mt-5 position-sm">
-    <div class="col-md-10 col-12 text-center">
 
-      <div class="row mb-md-3">
-        <%= link_to  timeline_path(@post.end_user.display_name), class: "text-decoration-none text-dark" do  %>
-          <%= image_tag @post.end_user.get_image, size: "40x40", class: "rounded-circle img-25" %>
-          <strong class="font-07" ><%= @post.end_user.display_name %><i class="fas fa-paper-plane"></i> </strong>
+  <div class="col-md-10 col-12 text-center">
+
+    <div class="row mb-md-3">
+      <%= link_to  timeline_path(@post.end_user.display_name), class: "text-decoration-none text-dark" do  %>
+        <%= image_tag @post.end_user.get_image, size: "40x40", class: "rounded-circle img-25" %>
+        <strong class="font-07" ><%= @post.end_user.display_name %><i class="fas fa-paper-plane"></i> </strong>
+      <% end %>
+    </div>
+
+    <% if @post.image.attached? %>
+      <div class="row justify-content-center">
+        <%= image_tag @post.image, size: "350x200", class: "post-sm-img mt-3 mt-md-2" %>
+      </div>
+    <% end %>
+
+    <div class="row justify-content-center mt-md-4 mt-2 font-07 mx-1 p-md-0">
+      <%= @post.body %>
+    </div>
+
+  </div>
+
+  <% if end_user_signed_in? && @post.end_user_id == current_end_user.id  %>
+
+    <div class="col-md-2 col-12 sm-list  pl-md-0 p-0">
+
+      <div class="mb-2 mr-2 mr-md-0 ">
+        <%= link_to  edit_post_path(@post.end_user.display_name, @post.id), class: "btn btn-outline-success btn-small" do %>
+            編集 <i class="fas fa-solid fa-pen-to-square"></i>
         <% end %>
       </div>
 
-      <% if @post.image.attached? %>
-        <div class="row justify-content-center">
-          <%= image_tag @post.image, size: "350x200", class: "post-sm-img mt-3 mt-md-2" %>
-        </div>
-      <% end %>
-
-      <div class="row justify-content-center mt-md-4 mt-2 font-07 mx-1 p-md-0">
-        <%= @post.body %>
+      <div class="mb-2">
+        <%= link_to  destroy_post_path(@post.end_user.display_name, @post.id), method: :delete, class: "btn btn-outline-danger btn-small", "data-confirm"=> "本当に削除しますか？" do %>
+          削除 <i class="fas fa-solid fa-trash"></i>
+        <% end %>
       </div>
 
     </div>
 
-    <% if end_user_signed_in? && @post.end_user_id == current_end_user.id  %>
-      <div class="col-md-2 col-12 sm-list  pl-md-0 p-0">
-          <div class="mb-2 mr-2 mr-md-0 ">
-            <%= link_to  edit_post_path(@post.end_user.display_name, @post.id), class: "btn btn-outline-success btn-small" do %>
-             編集 <i class="fas fa-solid fa-pen-to-square"></i>
-            <% end %>
-          </div>
-          <div class="mb-2">
-            <%= link_to  destroy_post_path(@post.end_user.display_name, @post.id), method: :delete, class: "btn btn-outline-danger btn-small", "data-confirm"=> "本当に削除しますか？" do %>
-              削除 <i class="fas fa-solid fa-trash"></i>
-            <% end %>
-          </div>
-      </div>
-    <% end %>
+  <% end %>
 
 </div>
 
 <div class="row mt-md-5 mt-2 mb-2 border-top border-bottom">
 
   <div class="col-5 pt-2 text-center">
-    <i class="fas fa-comment"></i> <%= @post.comment_count %>件
+    <i class="fas fa-comment text-secondary"></i> <%= @post.comment_count %>件
   </div>
 
   <div class="col-5  pt-2">
-    <i class="fas fa-solid fa-heart"></i> <%= @post.likes.count %>件
+    <i class="fas fa-solid fa-heart text-danger"></i> <%= @post.likes.count %>件
   </div>
 
   <% if end_user_signed_in? %>
+
     <% if current_end_user.liked_by?(current_end_user.id, @post.id) %>
       <%= link_to "♥", like_path(@post.id), method: :delete, class: "btn btn-outline-info" %>
     <% else %>
       <%= render 'public/likes/like_form', table: @post %>
     <% end %>
+
   <% end %>
 
 </div>
 
 <% @post.comments.each do |comment| %>
+
   <% if comment.end_user.hide_non_cancelled_users %>
+
     <div class="row py-md-3 border-bottom">
+
       <div class="col-md-8">
         <%= image_tag comment.end_user.get_image, size: "30x30", class: "rounded-circle img-17" %>
         <span class="font-03"><%= comment.end_user.display_name %></span>
@@ -69,24 +80,36 @@
 
       <div class="col-md-9 offset-1">
         <%= link_to comment_path(comment.post.end_user.display_name, comment.post_id,comment.id), class: "text-decoration-none text-dark font-08" do %>
-          <i class="fas fa-comment"></i>  <%= comment.body %>
+          <i class="fas fa-comment text-secondary"></i>  <%= comment.body %>
         <% end %>
       </div>
+
     </div>
+
   <% end %>
+
 <% end %>
 
 <% if end_user_signed_in? %>
+
   <% if current_end_user.not_display_guest %>
+  
     <div class="mt-md-4 mt-3 border-bottom">
+      
       <%= form_with model: [@post, @comment] , url: comments_path(@post.end_user.display_name, @post.id) do |f| %>
+      
         <div class="col-md-11">
           <%= f.text_area :body,rows:'3',placeholder: "コメントをここに" , class: "form-control" %>
         </div>
+        
         <div class="text-right">
           <%= f.submit "コメントする", class: "btn btn-outline-info btn-small" %>
         </div>
+        
       <% end %>
+      
     </div>
+    
   <% end %>
+  
 <% end %>

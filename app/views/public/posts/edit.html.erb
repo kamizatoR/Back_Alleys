@@ -17,16 +17,19 @@
       <div class="row mx-md-3 mt-md-3 mb-md-0 px-md-5 mx-2 mx-md-0 justify-content-around ">
         <%= f.submit "投稿", class: "btn btn-success col-lg-4 btn-small" %>
       </div>
+      
     <% end %>
+    
   </div>
 
-
   <div class="col-md-2 pl-0 sm-list">
+    
     <div>
       <%= link_to  destroy_post_path(current_end_user.display_name, @post.id), method: :delete, class: "btn btn-outline-danger", "data-confirm"=> "本当に削除しますか？" do %>
          削除 <i class="fas fa-solid fa-trash"></i>
       <% end %>
     </div>
+    
   </div>
 
 </div>

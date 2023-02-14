@@ -4,12 +4,15 @@
   <div class="row mt-2">
 
     <% @likes.each do |like| %>
+
       <% if like.end_user.hide_non_cancelled_users %>
 
         <div class="col-lg-4 col-md-6">
-          <div class="card my-md-3 my-1">
+
+          <div class="card my-md-3 my-1 shadow">
 
             <%= link_to reply_path(like.end_user.display_name, like.table.comment.post_id, like.table.comment_id, like.table.id), class: "text-decoration-none text-dark"  do %>
+
               <div class="card-body h-200 no-height card-body-upper-row">
 
                 <p class="card-title font-075 overflow-hidden">
@@ -23,15 +26,17 @@
               </div>
 
               <div class="card-body text-right card-body text-right card-sm-padding">
-                <p class="card-text"> <i class="fas fa-solid fa-heart ml-3"></i> <%= like.table.likes.count %></p>
+                <p class="card-text"> <i class="fas fa-solid fa-heart ml-3 text-danger"></i> <%= like.table.likes.count %></p>
               </div>
 
             <% end %>
 
           </div>
+
         </div>
 
       <% end %>
+
     <% end %>
 
   </div>

@@ -81,6 +81,7 @@ class EndUser < ApplicationRecord
 
   def likes_count
     uncancelled_user_likes = []
+    
     self.likes.each do |like|
       uncancelled_user_likes << like if like.end_user.is_deleted == false
       #binding.pry
@@ -91,10 +92,12 @@ class EndUser < ApplicationRecord
     else
       0
     end
+    
   end
 
   def followers_count
     uncancelled_user_followers = []
+    
     self.followers.each do |follower|
       uncancelled_user_followers << follower if follower.is_deleted == false
       #binding.pry
@@ -105,10 +108,12 @@ class EndUser < ApplicationRecord
     else
       0
     end
+    
   end
 
   def followings_count
     uncancelled_user_follows = []
+    
     self.followings.each do |follow|
       uncancelled_user_follows << follow if follow.is_deleted == false
       #binding.pry
@@ -119,7 +124,7 @@ class EndUser < ApplicationRecord
     else
       0
     end
+    
   end
-
 
 end

@@ -1,41 +1,54 @@
 <div class="container">
+
   <%= render 'timeline_header', end_user: @end_user %>
 
   <div class="row mt-2">
 
     <% @end_user_posts.each do |post| %>
+
       <% if post.end_user.hide_non_cancelled_users %>
+
         <div class="col-lg-4 col-md-6">
-          <div class="card my-md-3 my-1">
+
+          <div class="card my-md-3 my-1 shadow">
 
             <% if post.image.attached? %>
+
               <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
+
                 <div class="card-body h-200 no-height card-body-upper-row">
                   <%= image_tag post.image, size: "171x130", class: "timeline-sm-img timeline-md-img" %>
                   <p class="card-title"> <%= truncate(post.body, length: 18) %></p>
                 </div>
 
                 <div class="card-body text-right card-sm-padding">
-                  <p class="card-text"><i class="fas fa-comment"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3"></i> <%= post.likes.count %></p>
+                  <p class="card-text"><i class="fas fa-comment text-secondary"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3 text-danger"></i> <%= post.likes.count %></p>
                 </div>
+
               <% end %>
 
             <% else %>
+
               <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
+
                 <div class="card-body h-200 no-height card-body-upper-row">
                   <p class="card-title"> <%= truncate(post.body, length: 78) %></p>
                 </div>
 
                 <div class="card-body text-right card-sm-padding">
-                  <p class="card-text"><i class="fas fa-comment"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3"></i> <%= post.likes.count %></p>
+                  <p class="card-text"><i class="fas fa-comment text-secondary"></i> <%= post.comments.count %> <i class="fas fa-solid fa-heart ml-3 text-danger"></i> <%= post.likes.count %></p>
                 </div>
+
               <% end %>
-              
+
             <% end %>
-            
+
           </div>
+
         </div>
+
       <% end %>
+
     <% end %>
 
   </div>

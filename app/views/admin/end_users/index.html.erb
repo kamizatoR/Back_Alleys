@@ -1,34 +1,42 @@
 <div class="row mt-md-5">
+  
     <table class="table mx-2 mx-md-5 font-09">
+      
       <thead class="bg-secondary text-light">
+        
         <tr>
           <th>ユーザーID</th>
           <th>ユーザー名</th>
           <th>ステータス</th>
         </tr>
+        
       </thead>
 
       <% @suspended_end_users.each do |suspended_end_user| %>
+      
         <tbody>
+          
           <tr>
             <td>No.<%= suspended_end_user.id %></td>
+            
             <td class="overflow-hidden">
               <%= image_tag suspended_end_user.get_image, size: "25x25", class: "rounded-circle" %>
               <%= link_to admin_end_user_path(suspended_end_user.id), class: "text-decoration-none text-dark" do %>
                 <%= suspended_end_user.display_name %>
               <% end %>
             </td>
+            
             <% if suspended_end_user.is_deleted == true %>
               <td class="text-danger"><strong>停止済み</strong></td>
             <% end %>
+            
           </tr>
 
         </tbody>
+        
       <% end %>
 
     </table>
-
-
 
 </div>
 
