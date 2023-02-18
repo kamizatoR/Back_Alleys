@@ -29,7 +29,7 @@
 
       <div class="mb-2 mr-2 mr-md-0 ">
         <%= link_to  edit_post_path(@post.end_user.display_name, @post.id), class: "btn btn-outline-success btn-small" do %>
-            編集 <i class="fas fa-solid fa-pen-to-square"></i>
+            編集 <i class="fas fa-edit"></i>
         <% end %>
       </div>
 
@@ -93,23 +93,23 @@
 <% if end_user_signed_in? %>
 
   <% if current_end_user.not_display_guest %>
-  
+
     <div class="mt-md-4 mt-3 border-bottom">
-      
+
       <%= form_with model: [@post, @comment] , url: comments_path(@post.end_user.display_name, @post.id) do |f| %>
-      
+
         <div class="col-md-11">
           <%= f.text_area :body,rows:'3',placeholder: "コメントをここに" , class: "form-control" %>
         </div>
-        
+
         <div class="text-right">
           <%= f.submit "コメントする", class: "btn btn-outline-info btn-small" %>
         </div>
-        
+
       <% end %>
-      
+
     </div>
-    
+
   <% end %>
-  
+
 <% end %>
