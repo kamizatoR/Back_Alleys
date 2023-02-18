@@ -2,7 +2,7 @@ class Public::EndUsersController < ApplicationController
    before_action :authenticate_any!
 
   def timeline
-   @end_user = EndUser.find_by(display_name: params[:display_name])
+   @end_user = EndUser.find_by!(display_name: params[:display_name])
    @end_uesr_new_order_posts = @end_user.posts.order(created_at: :desc)
    @end_user_posts = Kaminari.paginate_array(@end_uesr_new_order_posts).page(params[:page]).per(6)
   end
