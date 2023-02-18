@@ -111,19 +111,6 @@ ActiveRecord::Schema.define(version: 2023_01_26_184816) do
     t.string "body", null: false
   end
 
-  create_table "tag_relations", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "post_id", null: false
-    t.integer "tag_id", null: false
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "follow_followers", "end_users", column: "followed_id"
