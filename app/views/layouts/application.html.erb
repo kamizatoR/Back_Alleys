@@ -12,9 +12,9 @@
   </head>
 
   <body>
-    
+
     <div class="container">
-      
+
       <div class="row d-flex my-2">
 
         <div class="col-8 col-md-8">
@@ -42,7 +42,7 @@
 
                 <li class="nav-item my-md-2">
                   <%= link_to  search_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
-                    検索 <i class="fas fa-solid fa-magnifying-glass"></i>
+                    検索 <i class="fas fa-search"></i>
                   <% end %>
                 </li>
 
@@ -70,41 +70,41 @@
                     <strong><%= current_end_user.display_name %></strong>
                   <% end %>
                 </li>
-                
+
               </ul>
 
             <% elsif admin_signed_in? %>
 
               <ul class="navbar-nav">
-                
+
                 <li class="nav-item mt-2 my-md-2">
                   <%= link_to  root_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     投稿一覧 <i class="fas fa-solid fa-paw"></i>
                   <% end %>
                 </li>
-                
+
                 <li class="nav-item my-2">
                   <%= link_to  admin_search_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     検索 <i class="fas fa-solid fa-magnifying-glass"></i>
                   <% end %>
                 </li>
-                
+
                 <li class="nav-item my-md-2">
                   <%= link_to admin_end_users_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     停止ユーザー <i class="fas fa-solid fa-user-xmark"></i>
                   <% end %>
                 </li>
-                
+
                 <li class="nav-item my-2">
                   <%= link_to "ログアウト", destroy_admin_session_path, class: 'btn btn-outline-dark nav-link btn-small', method: :delete %>
                 </li>
-                
+
               </ul>
 
             <% else %>
 
               <ul class="navbar-nav">
-                
+
                 <li class="nav-item mt-2 my-md-2">
                   <%= link_to  root_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
                     投稿一覧 <i class="fas fa-solid fa-paw"></i>
@@ -113,7 +113,7 @@
 
                 <li class="nav-item my-2 ">
                   <%= link_to new_end_user_session_path, class: 'btn btn-outline-dark nav-link btn-small' do %>
-                    ログイン <i class="fas fa-solid fa-right-to-bracket"></i>
+                    ログイン <i class="fas fa-sign-out-alt"></i>
                   <% end %>
                 </li>
 
@@ -122,19 +122,19 @@
                     新規登録 <i class="fas fa-solid fa-user-plus"></i>
                   <% end %>
                 </li>
-                
+
               </ul>
 
             <% end %>
 
           </nav>
-          
+
         </div>
 
       </div>
-      
+
     </div>
 
   </body>
-  
+
 </html>
