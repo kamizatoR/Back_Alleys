@@ -23,6 +23,10 @@
       <%= @reply.body %>
     </div>
 
+    <div class="row justify-content-end mt-md-4 mt-2 font-07 p-md-0">
+      <%= @reply.created_at.strftime('%Y.%m.%d') %>
+    </div>
+
   </div>
 
   <% if end_user_signed_in? && @reply.end_user_id == current_end_user.id  %>
@@ -55,7 +59,7 @@
 
   <% if end_user_signed_in? %>
 
-    <% if current_end_user.liked_by?(current_end_user.id, @reply.id) %>
+    <% if current_end_user.reply_liked_by?(current_end_user.id, @reply.id) %>
       <%= link_to "♥", like_path(table_id: @reply.id), method: :delete, class: "btn btn-outline-info" %>
     <% else %>
       <%= render 'public/likes/like_form', table: @reply %>

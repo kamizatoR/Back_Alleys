@@ -18,8 +18,9 @@
                 <p class="card-title"> <%= truncate(comment.body, length: 65) %></p>
               </div>
 
-              <div class="card-body text-right card-sm-padding">
-                <p class="card-text"><i class="fas fa-solid fa-reply text-secondary"></i> <%= comment.replies.count %> <i class="fas fa-solid fa-heart ml-3 text-danger"></i> <%= comment.likes.count %></p>
+              <div class="card-body d-flex justify-content-around card-sm-padding">
+                <p class="card-text text-secondary"><%= comment.created_at.strftime('%Y.%m.%d') %></p>
+                <p class="card-text"> <i class="fas fa-solid fa-reply text-secondary"></i><%= comment.replies.count %> <i class="fas fa-solid fa-heart ml-0 text-danger"></i><%= comment.likes.count %></p>
               </div>
 
             <% end %>

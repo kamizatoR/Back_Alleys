@@ -21,6 +21,10 @@
       <%= @post.body %>
     </div>
 
+    <div class="row justify-content-end mt-md-4 mt-2 font-07 p-md-0">
+      <%= @post.created_at.strftime('%Y.%m.%d') %>
+    </div>
+
   </div>
 
   <% if end_user_signed_in? && @post.end_user_id == current_end_user.id  %>
@@ -57,7 +61,7 @@
 
   <% if end_user_signed_in? %>
 
-    <% if current_end_user.liked_by?(current_end_user.id, @post.id) %>
+    <% if current_end_user.post_liked_by?(current_end_user.id, @post.id) %>
       <%= link_to "♥", like_path(@post.id), method: :delete, class: "btn btn-outline-info" %>
     <% else %>
       <%= render 'public/likes/like_form', table: @post %>
@@ -75,12 +79,12 @@
 
       <div class="col-md-8">
         <%= image_tag comment.end_user.get_image, size: "30x30", class: "rounded-circle img-17" %>
-        <span class="font-03"><%= comment.end_user.display_name %></span>
+        <span class="font-03"><%= comment.end_user.display_name %> <%= comment.created_at.strftime('%Y.%m.%d') %></span>
       </div>
 
       <div class="col-md-9 offset-1">
         <%= link_to comment_path(comment.post.end_user.display_name, comment.post_id,comment.id), class: "text-decoration-none text-dark font-08" do %>
-          <i class="fas fa-comment text-secondary"></i>  <%= comment.body %>
+          <i class="fas fa-comment text-secondary"></i> <%= comment.body %>
         <% end %>
       </div>
 

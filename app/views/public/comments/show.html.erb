@@ -25,6 +25,10 @@
       <%= @comment.body %>
     </div>
 
+    <div class="row justify-content-end mt-md-4 mt-2 font-07 p-md-0">
+      <%= @comment.created_at.strftime('%Y.%m.%d') %>
+    </div>
+
   </div>
 
   <% if end_user_signed_in? && @comment.end_user_id == current_end_user.id  %>
@@ -61,7 +65,7 @@
 
   <% if end_user_signed_in? %>
 
-    <% if current_end_user.liked_by?(current_end_user.id, @comment.id) %>
+    <% if current_end_user.comment_liked_by?(current_end_user.id, @comment.id) %>
       <%= link_to "♥", like_path(@comment.id), method: :delete, class: "btn btn-outline-info" %>
     <% else %>
       <%= render 'public/likes/like_form', table: @comment %>
@@ -77,9 +81,9 @@
 
     <div class="row py-md-3 border-bottom">
 
-      <div class="col-md-6">
+      <div class="col-md-8">
         <%= image_tag reply.end_user.get_image, size: "30x30", class: "rounded-circle img-17" %>
-        <span class="font-03"><%= reply.end_user.display_name %></span>
+        <span class="font-03"><%= reply.end_user.display_name %> <%= reply.created_at.strftime('%Y.%m.%d') %></span>
       </div>
 
       <div class="col-md-9 offset-1">
