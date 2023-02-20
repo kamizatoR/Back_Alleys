@@ -35,8 +35,10 @@
     <div class="row mx-lg-3 mt-3 mt-lg-5 mb-lg-0 px-lg-5 justify-content-around ">
       <%= f.submit "編集内容を保存", class: "btn btn-outline-success col-lg-4 col-5 btn-small " %>
 
-      <%= link_to unsubscribe_path(@end_user.display_name), class: "btn btn-outline-danger col-lg-4 col-5 btn-small" do %>
-        退会する <i class="fa-solid fa-user-minus"></i>
+      <% if current_end_user.display_name.present? %>
+        <%= link_to unsubscribe_path(@end_user.display_name), class: "btn btn-outline-danger col-lg-4 col-5 btn-small" do %>
+          退会する <i class="fa-solid fa-user-minus"></i>
+        <% end %>
       <% end %>
 
     </div>
