@@ -44,7 +44,7 @@ class EndUser < ApplicationRecord
   end
 
   def hide_non_cancelled_users
-    self.is_deleted == false
+    self.is_deleted != true
   end
 
   def follow(end_user_id)
@@ -58,11 +58,11 @@ class EndUser < ApplicationRecord
   def post_liked_by?(user_id, id)
     Like.where(table_type: "Post", end_user_id: user_id, table_id: id).present?
   end
-  
+
   def comment_liked_by?(user_id, id)
     Like.where(table_type: "Comment", end_user_id: user_id, table_id: id).present?
   end
-  
+
   def reply_liked_by?(user_id, id)
     Like.where(table_type: "Reply", end_user_id: user_id, table_id: id).present?
   end
@@ -91,7 +91,7 @@ class EndUser < ApplicationRecord
     uncancelled_user_likes = []
 
     self.likes.each do |like|
-      uncancelled_user_likes << like if like.end_user.is_deleted == false
+      uncancelled_user_likes << like if like.table.end_user.is_deleted == false
       #binding.pry
     end
 

@@ -5,7 +5,7 @@
 
     <% @likes.each do |like| %>
 
-      <% if like.end_user.hide_non_cancelled_users %>
+      <% if like.table.end_user.hide_non_cancelled_users %>
 
         <div class="col-lg-4 col-md-6">
 

@@ -61,6 +61,7 @@
                 
                 <%# マイページ空文字編集した際は表示しない　%>
                 <% unless current_end_user.display_name.blank? %>
+                
                   <li class="nav-item mt-md-5 mt-4">
                     <%= link_to  new_post_path(current_end_user.display_name), class: 'btn btn-outline-dark nav-link btn-small' do %>
                       投稿  <i class="fas fa-paper-plane"></i>
@@ -75,6 +76,7 @@
                       <strong><%= current_end_user.display_name %></strong>
                     <% end %>
                   </li>
+                  
                 <% end %>
 
               </ul>
