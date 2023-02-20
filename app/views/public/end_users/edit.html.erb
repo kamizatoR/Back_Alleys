@@ -3,7 +3,7 @@
 <h1 class="text-center my-4">情報編集</h1>
 
 <div class="container mt-lg-5">
-  <%= form_with model: @end_user, url: update_mypage_path(@end_user.display_name) do |f| %>
+  <%= form_with model: @end_user, url: update_mypage_path do |f| %>
 
     <div class="row mx-lg-4 mb-lg-3 px-lg-5 ">
       <p class="mr-lg-2">プロフィール画像</p>
@@ -38,9 +38,9 @@
       <%= link_to unsubscribe_path(@end_user.display_name), class: "btn btn-outline-danger col-lg-4 col-5 btn-small" do %>
         退会する <i class="fa-solid fa-user-minus"></i>
       <% end %>
-      
+
     </div>
-    
+
   <% end %>
 
 </div>

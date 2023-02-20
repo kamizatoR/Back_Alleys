@@ -25,20 +25,20 @@ Rails.application.routes.draw do
     get 'new_arrival_post' => "homes#new_arrival", as: "new_arrival"
 
     #ユーザー情報関連のURL
-    get '/:display_name/mypage' => "end_users#mypage", as: "mypage"
-    get '/:display_name/mypage/edit' => "end_users#edit", as: "edit_mypage"
-    patch '/:display_name/mypage' => "end_users#update", as: "update_mypage"
-    get '/:display_name/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
-    patch '/:display_name/withdraw' => "end_users#withdraw", as: 'withdraw'
+    get '/mypage' => "end_users#mypage", as: "mypage"
+    get '/mypage/edit' => "end_users#edit", as: "edit_mypage"
+    patch '/mypage' => "end_users#update", as: "update_mypage"
+    get '/unsubscribe' => "end_users#unsubscribe", as: 'unsubscribe'
+    patch '/withdraw' => "end_users#withdraw", as: 'withdraw'
 
      #検索関連のURL
     get '/searches' => "searches#index", as: 'search'
     get '/searches/result' => "searches#result", as: 'search_result'
 
     #ユーザータイムラインのURL
-    get '/:display_name' => "end_users#timeline", as: "timeline"
-    get '/:display_name/comments_list' => "end_users#comments_list", as: "comments_list"
-    get '/:display_name/replies_list' => "end_users#replies_list", as: "replies_list"
+    get '/timeline' => "end_users#timeline", as: "timeline"
+    get '/timeline/comments_list' => "end_users#comments_list", as: "comments_list"
+    get '/timeline/replies_list' => "end_users#replies_list", as: "replies_list"
 
     #フォロー関連のURL
     post '/:display_name/following' => "follow_followers#create", as: "following"
@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     get '/:display_name/followers' => "follow_followers#followers", as: "follower_index"
 
     #投稿関連のURL
-    get '/:display_name/posts/new' => "posts#new", as: "new_post"
+    get '/posts/new' => "posts#new", as: "new_post"
     get '/:display_name/posts/:id' => "posts#show", as: "post"
     post '/:display_name/posts' => "posts#create", as: "posts"
     get '/:display_name//:id/edit' => "posts#edit", as: "edit_post"
@@ -67,7 +67,7 @@ Rails.application.routes.draw do
     get '/:display_name/:post_id/:comment_id//replies/:id/edit' => "replies#edit", as: "edit_reply"
     patch '/:display_name/:post_id/:comment_id/replies/:id' => "replies#update", as: "update_reply"
     delete '/:display_name/:post_id/:comment_id/replies/:id' => "replies#destroy", as: "destroy_reply"
-    
+
   end
 
   namespace :admin do
