@@ -24,6 +24,8 @@
     text-overflow: ellipsis;
   }
 
+
+
 @media screen and (max-width: 1025px) {
 
   .timeline-md-img{
