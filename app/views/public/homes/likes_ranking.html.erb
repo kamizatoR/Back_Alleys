@@ -30,7 +30,7 @@
 
               <p class="card-title font-075 overflow-hidden">
                 <i class="fas fa-paper-plane"></i>
-                <%= image_tag post.end_user.get_image, size: "25x25" %>
+                <%= image_tag post.end_user.get_image, class: "img-25" %>
                 <%= post.end_user.display_name %>
               </p>
 
@@ -55,7 +55,7 @@
 
               <p class="card-title font-075 overflow-hidden">
                 <i class="fas fa-paper-plane"></i>
-                <%= image_tag post.end_user.get_image, size: "25x25" %>
+                <%= image_tag post.end_user.get_image, class: "img-25" %>
                 <%= truncate(post.end_user.display_name, length: 12) %>
               </p>
 
