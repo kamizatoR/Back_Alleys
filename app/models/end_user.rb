@@ -15,6 +15,7 @@ class EndUser < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :followed
 
   has_many :likes, dependent: :destroy
+  scope :active, ->{where(is_deleted: false) }
 
   has_one_attached :image
 
