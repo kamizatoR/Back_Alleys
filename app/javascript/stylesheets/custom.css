@@ -24,7 +24,11 @@
     text-overflow: ellipsis;
   }
 
-
+.top-md-img{
+		width: 170px;
+		height: 130px;
+		object-fit: cover;
+	}
 
 @media screen and (max-width: 1025px) {
 
