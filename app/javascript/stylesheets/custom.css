@@ -24,11 +24,78 @@
     text-overflow: ellipsis;
   }
 
-/*.top-md-img{*/
-/*		width: 170px;*/
-/*		height: 130px;*/
-/*		object-fit: cover;*/
-/*	}*/
+.top-md-img{
+	width: 170px;
+	height: 130px;
+	object-fit: cover;
+}
+
+.post-sm-img{
+	width: 350px;
+	height: 200px;
+	object-fit: contain;
+}
+
+.img-30-30{
+  width:40px;
+  height:40px;
+  object-fit: cover;
+}
+
+.img-25{
+  width:40px;
+  height:40px;
+  object-fit: cover;
+}
+
+.img-17{
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.img-60{
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.timeline-md-img{
+  width: 170px;
+  height: 130px;
+  object-fit: cover;
+  }
+
+.likes-md-img{
+  width: 170px;
+  height: 130px;
+  object-fit: cover;
+  }
+
+.img-follow{
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  }
+
+.img-50-30{
+  width: 70px;
+  height: 50px;
+  object-fit: cover;
+  }
+
+.img-15{
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  }
+  
+.img-25{
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+
 
 @media screen and (max-width: 1025px) {
 
@@ -105,6 +172,7 @@
     width:30px;
     height:30px;
   }
+
   .ellipsis{
     overflow: hidden;
     font-size: 0.7rem;

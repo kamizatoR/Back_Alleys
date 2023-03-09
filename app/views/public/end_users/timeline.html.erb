@@ -17,7 +17,7 @@
               <%= link_to post_path(post.end_user.display_name, post.id), class: "text-decoration-none text-dark"  do %>
 
                 <div class="card-body h-200 no-height card-body-upper-row">
-                  <%= image_tag post.image, size: "171x130", class: "timeline-sm-img timeline-md-img" %>
+                  <%= image_tag post.image, class: "timeline-sm-img timeline-md-img" %>
                   <p class="card-title"> <%= truncate(post.body, length: 12) %></p>
                 </div>
 

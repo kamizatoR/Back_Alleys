@@ -8,14 +8,14 @@
 
       <div class="col-sm-12 text-left">
         <%= link_to  timeline_path(@comment.end_user.display_name), class: "text-decoration-none text-dark" do  %>
-          <%= image_tag @comment.end_user.get_image, size: "40x40", class: "rounded-circle img-25" %>
+          <%= image_tag @comment.end_user.get_image, class: "rounded-circle img-25" %>
           <strong class="font-07"><%= @comment.end_user.display_name %></strong> <i class="fas fa-comment"></i>
         <% end %>
       </div>
 
       <div class="ml-md-0 ml-2 font-03 col-sm-12 text-left">
         <%= link_to post_path(@comment.post.end_user.display_name, @comment.post.id), class: "text-decoration-none text-info"  do %>
-          <small class="ml-md-3">返信先<%= @comment.post.end_user.display_name %></small>
+          <small class="ml-md-3">返信先 <%= @comment.post.end_user.display_name %></small>
         <% end %>
       </div>
 

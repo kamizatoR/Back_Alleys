@@ -9,22 +9,22 @@
   </div>
 
   <table class="table">
-    
+
     <% @followers.each do |follower| %>
-    
+
       <tr>
-        
+
         <td class="padding-l">
           <%= link_to timeline_path(follower.display_name), class: "text-decoration-none text-dark padding-l" do %>
-            <%= image_tag follower.get_image, size: "25x25" %>
+            <%= image_tag follower.get_image, class: "img-follow" %>
             <%= follower.display_name %>
           <% end %>
         </td>
-        
+
       </tr>
-      
+
     <% end %>
-    
+
   </table>
 
 </div>

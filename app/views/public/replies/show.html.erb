@@ -6,14 +6,14 @@
 
       <div class="col-sm-12 text-left">
         <%= link_to  timeline_path(@reply.end_user.display_name), class: "text-decoration-none text-dark" do  %>
-          <%= image_tag @reply.end_user.get_image, size: "40x40", class: "rounded-circle img-25" %>
+          <%= image_tag @reply.end_user.get_image, class: "rounded-circle img-25" %>
           <strong class="font-07"><%= @reply.end_user.display_name %></strong>　<i class="fas fa-solid fa-reply"></i>
         <% end %>
       </div>
 
       <div class="ml-md-0 ml-2 font-03 col-sm-12 text-left">
         <%= link_to comment_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment.id), class: "text-decoration-none text-info"  do %>
-          <small class="ml-3">返信先<%= @reply.comment.end_user.display_name %></small>
+          <small class="ml-3">返信先 <%= @reply.comment.end_user.display_name %></small>
         <% end %>
       </div>
 

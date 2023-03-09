@@ -9,7 +9,7 @@
       <tr>
 
         <td class="font-03 overflow-hidden" >
-          <%= image_tag search_result.end_user.get_image, size: "25x25", class: "img-15" %>
+          <%= image_tag search_result.end_user.get_image, class: "img-15" %>
 
           <%= link_to timeline_path(search_result.end_user.display_name), class: "text-decoration-none text-dark " do %>
             <%= search_result.end_user.display_name %>
@@ -19,7 +19,7 @@
         <td class="font-03 overflow-hidden">
           <%= link_to post_path(search_result.end_user.display_name, search_result.id), class: "text-decoration-none text-dark" do %>
             <% if search_result.image.attached? %>
-              <%= image_tag search_result.image, size: "70x50", class: "img-50-30" %>
+              <%= image_tag search_result.image,class: "img-50-30" %>
             <% end %>
           <% end %>
         </td>
@@ -41,7 +41,7 @@
       <tr>
 
         <td class="font-03 overflow-hidden">
-          <%= image_tag search_result.get_image, size: "25x25", class: "img-15"  %>
+          <%= image_tag search_result.get_image, class: "img-15"  %>
 
           <%= link_to timeline_path(search_result.display_name), class: "text-decoration-none text-dark" do %>
             <%= search_result.display_name %>

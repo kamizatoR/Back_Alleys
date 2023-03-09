@@ -19,11 +19,11 @@
 
                   <p class="card-title font-075 overflow-hidden">
                     <i class="fas fa-paper-plane"></i>
-                    <%= image_tag like.table.end_user.get_image, size: "25x25" %>
+                    <%= image_tag like.table.end_user.get_image, class: "img-follow" %>
                     <%= like.table.end_user.display_name %>
                   </p>
 
-                  <%= image_tag like.table.image, size: "171x130", class: "timeline-sm-img likes-md-img" %>
+                  <%= image_tag like.table.image, class: "timeline-sm-img likes-md-img" %>
 
                   <p class="card-title"> <%= truncate(like.table.body, length: 12) %></p>
 

@@ -6,14 +6,14 @@
 
     <div class="row mb-md-3">
       <%= link_to  timeline_path(@post.end_user.display_name), class: "text-decoration-none text-dark" do  %>
-        <%= image_tag @post.end_user.get_image, size: "40x40", class: "rounded-circle img-25" %>
+        <%= image_tag @post.end_user.get_image, class: "rounded-circle img-25" %>
         <strong class="font-07" ><%= @post.end_user.display_name %><i class="fas fa-paper-plane"></i> </strong>
       <% end %>
     </div>
 
     <% if @post.image.attached? %>
       <div class="row justify-content-center">
-        <%= image_tag @post.image, size: "350x200", class: "post-sm-img mt-3 mt-md-2" %>
+        <%= image_tag @post.image, class: "post-sm-img mt-3 mt-md-2" %>
       </div>
     <% end %>
 
@@ -78,7 +78,7 @@
     <div class="row py-md-3 border-bottom">
 
       <div class="col-md-8">
-        <%= image_tag comment.end_user.get_image, size: "30x30", class: "rounded-circle img-17" %>
+        <%= image_tag comment.end_user.get_image, class: "rounded-circle img-17" %>
         <span class="font-03"><%= comment.end_user.display_name %> <%= comment.created_at.strftime('%Y.%m.%d') %></span>
       </div>
 
