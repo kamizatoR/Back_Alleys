@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'public/homes#top'
+  root to: 'public/homes#new_arrival'
 
   devise_for :end_users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     get ':display_name/comment_likes' => "likes#comment_likes", as: "comment_likes"
     get ':display_name/reply_likes' => "likes#reply_likes", as: "reply_likes"
 
-    get 'new_arrival_post' => "homes#new_arrival", as: "new_arrival"
+    get 'likes_ranking_post' => "homes#likes_ranking", as: "likes_ranking_post"
 
     #ユーザー情報関連のURL
     get '/:display_name/mypage' => "end_users#mypage", as: "mypage"
