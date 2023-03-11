@@ -22,6 +22,9 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.end_user != current_end_user
+      redirect_to post_path(@post.end_user.display_name, @post.id)
+    end
   end
 
   def update
@@ -44,5 +47,5 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:body, :image)
   end
-  
+
 end

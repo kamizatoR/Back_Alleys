@@ -18,6 +18,9 @@ class Public::RepliesController < ApplicationController
 
   def edit
     @reply = Reply.find(params[:id])
+    if @reply.end_user != current_end_user
+      redirect_to reply_path(@reply.comment.post.end_user.display_name, @reply.comment.post_id, @reply.comment_id, @reply.id)
+    end
   end
 
   def update
